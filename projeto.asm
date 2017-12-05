@@ -1,6 +1,6 @@
 Include Irvine32.inc
 
-setPosNave PROTO,x: PTR Byte, y: PTR byte
+setPosNave PROTO,x: PTR Byte, y: PTR byte, eixo: PTR byte
 
 .data
 
@@ -121,7 +121,9 @@ Draw ENDP
 main PROC
 
 
-	INVOKE setPosNave, 10, 10,
+	INVOKE setPosNave, 10, 10,2
+	INVOKE setPosNave, 20, 20,1
+	INVOKE setPosNave, 40, 40,3
     call Draw 
 	;configuracoes:
 
@@ -131,7 +133,8 @@ main ENDP
 
 setPosNave PROC	USES eax ebx ecx ebx,
 	x: PTR Byte,
-	y: PTR Byte
+	y: PTR Byte,
+	eixo: PTR byte
 	
 	mov ecx,4
 	mov eax,110
@@ -145,6 +148,36 @@ setPosNave PROC	USES eax ebx ecx ebx,
 	mov ebx, OFFSET tela 
 	add ebx, eax
 	mov eax,ebx
+	
+	mov edx, eixo
+	cmp edx, 1
+	je NaveDireita
+	cmp edx, 2
+	je NaveCima
+	cmp edx, 3
+	je NaveEsquerda
+
+NaveEsquerda:
+	mov edx,254
+	mov ecx,0
+	add ebx, 8
+	mov DWORD PTR [ebx],edx
+	add ebx, 8
+	mov DWORD PTR [ebx],edx
+	mov ebx,eax
+	add ebx,440
+	mov DWORD PTR [ebx],edx
+	add ebx, 8
+	mov DWORD PTR [ebx],edx
+	mov ebx,eax
+	add ebx,880
+	add ebx, 8
+	mov DWORD PTR [ebx],edx
+	add ebx, 8
+	mov DWORD PTR [ebx],edx
+	jmp fim
+	
+NaveDireita:
 	mov edx,254
 	mov ecx,0
 	mov DWORD PTR [ebx],edx
@@ -166,7 +199,35 @@ setPosNave PROC	USES eax ebx ecx ebx,
 	mov DWORD PTR [ebx],ecx
 	add ebx, 4
 	mov DWORD PTR [ebx],edx
-	
+	jmp fim
+
+NaveCima:
+	mov edx,254
+	mov ecx,0
+	mov DWORD PTR [ebx],ecx
+	add ebx, 4
+	add ebx, 4
+	mov DWORD PTR [ebx],edx
+	add ebx, 4
+	mov DWORD PTR [ebx],ecx
+	mov ebx,eax
+	add ebx,440
+	mov DWORD PTR [ebx],edx
+	add ebx, 4
+	mov DWORD PTR [ebx],ecx
+	add ebx, 4
+	mov DWORD PTR [ebx],edx
+	add ebx, 4
+	mov DWORD PTR [ebx],ecx
+	add ebx, 4
+	mov DWORD PTR [ebx],edx
+	mov ebx,eax
+	add ebx,880
+	mov DWORD PTR [ebx],edx
+	add ebx, 16
+	mov DWORD PTR [ebx],edx
+	jmp fim
+fim:
 	ret 
 setPosNave ENDP
 	
