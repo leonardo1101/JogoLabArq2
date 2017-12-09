@@ -1,6 +1,14 @@
 Include Irvine32.inc
 
-setPosNave PROTO,x: PTR Byte, y: PTR byte, eixo: PTR byte
+;Funções
+setPosNave PROTO
+
+;Estruturas
+nave STRUCT
+	x DWORD 0
+	y DWORD 0
+	eixo byte 1
+nave ENDS
 
 .data
 
@@ -21,9 +29,8 @@ telaInstrucoes  BYTE "O jogo consiste em uma batalha entre duas naves,",0Dh,0Ah,
 					 "As cores das naves serao diferentes para a identificacao dos jogadores.",0Dh,0Ah,
 					 " ", 0Dh,0Ah,
 					 "As naves possuem um armamento que sera utilizado para atingir o adversario",0Dh,0Ah,0
-					 
-posNave1 BYTE 0,0
-posNave2 BYTE 20,20
+nave1 nave <0,0,1>
+nave2 nave <>
 messageDirections BYTE "Use the arrow keys to move", 0dh, 0ah, 0
 
 
@@ -87,6 +94,21 @@ rowSize = ($ - tela)
 		
 .code
 
+ClearScreen PROC
+	mov ebx, OFFSET tela ;Move the tela 2D array into ebx
+	mov ecx, 0 ;intialize the counter
+	mov eax,00
+Clear: 
+	
+	mov [ebx], eax ;Move the indirect value of ebx postion 1 into eax
+	add ebx, 4 ;Move to the next offset position
+	inc ecx ;Increment the counter
+	cmp ecx, 6050
+	jne Clear
+
+	ret
+ClearScreen ENDP
+
 Draw PROC
 	mov dh, 0 ;Set tela position X
 	mov dl, 0 ;Set tela position Y
@@ -120,112 +142,199 @@ Draw ENDP
 
 main PROC
 
+	mov edx, OFFSET tela
+leia:
+	call ClearScreen
+	INVOKE setPosNave
+	call Draw
+	call ReadKey
+	cmp al,97
+	je MudarEsquerda
+	cmp al,100
+	je MudarDireita
+	cmp al,115
+	je MudarBaixo
+	cmp al,119
+	je MudarCima
+	cmp al,113
+	je fim
+	movzx eax, Byte PTR [nave1+8]
+	cmp eax,1
+	je MoverDireita
+	cmp eax,2
+	je MoverCima
+	cmp eax,3
+	je MoverEsquerda
+	cmp eax,4
+	je MoverBaixo
+	jmp leia
+	
+MudarDireita:
+	mov al , 1
+	mov Byte PTR [nave1+8] , al
+	jmp leia
 
-	INVOKE setPosNave, 10, 10,2
-	INVOKE setPosNave, 20, 20,1
-	INVOKE setPosNave, 40, 40,3
-    call Draw 
-	;configuracoes:
+MudarEsquerda:
+	mov al , 3
+	mov Byte PTR [nave1+8] , al
+	jmp leia
+MudarCima:
+	mov al , 2
+	mov Byte PTR [nave1+8] , al
+	jmp leia
 
+MudarBaixo:
+	mov al , 4
+	mov Byte PTR [nave1+8] , al
+	jmp leia
+
+MoverDireita:
+	mov dx , WORD PTR [nave1]
+	inc dx
+	inc dx
+	mov  WORD PTR [nave1] , dx
+	jmp leia
+	
+MoverEsquerda:
+	mov dx ,  WORD PTR [nave1]
+	dec dx
+	dec dx
+	mov  WORD PTR [nave1] , dx
+	jmp leia
+
+MoverCima:
+	mov dx ,  WORD PTR [nave1 + 4]
+	dec dx
+	dec dx
+	mov WORD PTR [nave1 + 4] , dx
+	jmp leia
+
+MoverBaixo:
+	mov dx , WORD PTR [nave1 + 4]
+	inc dx
+	mov WORD PTR [nave1 + 4] , dx
+	jmp leia
+	
+fim:
 	exit
 
 main ENDP
 
-setPosNave PROC	USES eax ebx ecx ebx,
-	x: PTR Byte,
-	y: PTR Byte,
-	eixo: PTR byte
-	
+setPosNave PROC	USES eax ebx ecx ebx
 	mov ecx,4
 	mov eax,110
-	mov ebx, y
+	mov  ebx, DWORD PTR [nave1 + 4]
 	mul ebx
 	mul ecx
 	mov ebx,eax
-	mov eax, x
+	mov  eax, DWORD PTR [nave1]
 	mul ecx
 	add eax,ebx
 	mov ebx, OFFSET tela 
 	add ebx, eax
 	mov eax,ebx
 	
-	mov edx, eixo
+	movzx  edx,Byte PTR  [nave1 + 8]
 	cmp edx, 1
 	je NaveDireita
 	cmp edx, 2
 	je NaveCima
 	cmp edx, 3
 	je NaveEsquerda
-
+	cmp edx,4
+	je NaveBaixo
+	
 NaveEsquerda:
 	mov edx,254
 	mov ecx,0
 	add ebx, 8
-	mov DWORD PTR [ebx],edx
+	mov [ebx],edx
 	add ebx, 8
-	mov DWORD PTR [ebx],edx
+	mov [ebx],edx
 	mov ebx,eax
 	add ebx,440
-	mov DWORD PTR [ebx],edx
+	mov [ebx],edx
 	add ebx, 8
-	mov DWORD PTR [ebx],edx
+	mov [ebx],edx
 	mov ebx,eax
 	add ebx,880
 	add ebx, 8
-	mov DWORD PTR [ebx],edx
+	mov [ebx],edx
 	add ebx, 8
-	mov DWORD PTR [ebx],edx
+	mov [ebx],edx
 	jmp fim
 	
 NaveDireita:
 	mov edx,254
 	mov ecx,0
-	mov DWORD PTR [ebx],edx
+	mov [ebx],edx
 	add ebx, 4
-	mov DWORD PTR [ebx],ecx
+	mov [ebx],ecx
 	add ebx, 4
-	mov DWORD PTR [ebx],edx
+	mov [ebx],edx
 	mov ebx,eax
 	add ebx,448
-	mov DWORD PTR [ebx],edx
+	mov [ebx],edx
 	add ebx, 4
-	mov DWORD PTR [ebx],ecx
+	mov [ebx],ecx
 	add ebx, 4
-	mov DWORD PTR [ebx],edx
+	mov [ebx],edx
 	mov ebx,eax
 	add ebx,880
-	mov DWORD PTR [ebx],edx
+	mov [ebx],edx
 	add ebx, 4
-	mov DWORD PTR [ebx],ecx
+	mov [ebx],ecx
 	add ebx, 4
-	mov DWORD PTR [ebx],edx
+	mov [ebx],edx
 	jmp fim
 
 NaveCima:
 	mov edx,254
 	mov ecx,0
-	mov DWORD PTR [ebx],ecx
+	mov [ebx],ecx
 	add ebx, 4
 	add ebx, 4
-	mov DWORD PTR [ebx],edx
+	mov [ebx],edx
 	add ebx, 4
-	mov DWORD PTR [ebx],ecx
+	mov [ebx],ecx
 	mov ebx,eax
 	add ebx,440
-	mov DWORD PTR [ebx],edx
+	mov [ebx],edx
 	add ebx, 4
-	mov DWORD PTR [ebx],ecx
+	mov [ebx],ecx
 	add ebx, 4
-	mov DWORD PTR [ebx],edx
+	mov [ebx],edx
 	add ebx, 4
-	mov DWORD PTR [ebx],ecx
+	mov [ebx],ecx
 	add ebx, 4
-	mov DWORD PTR [ebx],edx
+	mov [ebx],edx
 	mov ebx,eax
 	add ebx,880
-	mov DWORD PTR [ebx],edx
+	mov [ebx],edx
 	add ebx, 16
-	mov DWORD PTR [ebx],edx
+	mov [ebx],edx
+	jmp fim
+	
+NaveBaixo:
+	mov edx,254
+	mov ecx,0
+	mov [ebx],edx
+	add ebx, 16
+	mov [ebx],edx
+	mov ebx,eax
+	add ebx,440
+	mov [ebx],edx
+	add ebx, 4
+	mov [ebx],ecx
+	add ebx, 4
+	mov [ebx],edx
+	add ebx, 4
+	mov [ebx],ecx
+	add ebx, 4
+	mov [ebx],edx
+	mov ebx,eax
+	add ebx,888
+	mov [ebx],edx
 	jmp fim
 fim:
 	ret 
