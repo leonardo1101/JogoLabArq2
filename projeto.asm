@@ -3,16 +3,24 @@ Include Irvine32.inc
 ;Funções
 setPosNave1 PROTO
 setPosNave2 PROTO
+desenhaVida PROTO
 criaTiro PROTO
 adicionarTiro PROTO
 mostrarTiros PROTO
 retirarTiro PROTO ,  endNodeA : DWORD
+bateu PROTO
 
 ;Estruturas
+crd STRUCT
+	x BYTE 0
+	y BYTE 0
+crd ENDS
+
 nave STRUCT
 	x DWORD 0
 	y DWORD 0
 	eixo byte 1
+	vida byte 3
 nave ENDS
 
 tiro STRUCT
@@ -29,6 +37,11 @@ node ENDS
 .data
 NULL = 0
 SIZENODE = 16
+
+colisaoDir crd <0,0>,<2,0>,<2,1>,<4,1>,<0,2>,<2,2>
+colisaoEsq crd <2,0>,<4,0>,<0,1>,<2,1>,<2,2>,<4,2>
+colisaoCim crd <2,0>,<0,1>,<2,1>,<4,1>,<0,2>,<4,2>
+colisaoBai crd <0,0>,<4,0>,<0,1>,<2,1>,<4,1>,<2,2>
 
 noRemover DWORD 0 
 nodeInicio DWORD 0
@@ -54,17 +67,17 @@ telaInstrucoes  BYTE "O jogo consiste em uma batalha entre duas naves,",0Dh,0Ah,
 					 "As cores das naves serao diferentes para a identificacao dos jogadores.",0Dh,0Ah,
 					 " ", 0Dh,0Ah,
 					 "As naves possuem um armamento que sera utilizado para atingir o adversario",0Dh,0Ah,0
-nave1 nave <0,0,1>
-nave2 nave <50,20,3>
+nave1 nave <5,5,1,3>
+nave2 nave <50,20,3,3>
 playerPress byte 0
 messageDirections BYTE "Use the arrow keys to move", 0dh, 0ah, 0
 
 
 
-tela DWORD 124, 108 dup(45),124
+tela DWORD 124, 108 dup(00),124
 rowSize = ($ - tela)
 		DWORD 124, 108 dup(00),124
-		DWORD 124, 108 dup(00),124
+		DWORD 124, 108 dup(45),124
 		DWORD 124, 108 dup(00),124		
 		DWORD 124, 108 dup(00),124
 		DWORD 124, 108 dup(00),124
@@ -112,26 +125,29 @@ rowSize = ($ - tela)
 		DWORD 124, 108 dup(00),124
 		DWORD 124, 108 dup(00),124
 		DWORD 124, 108 dup(00),124
-		DWORD 124, 108 dup(00),124
-		DWORD 124, 108 dup(00),124
-		DWORD 124, 108 dup(00),124
+		DWORD 124, 108 dup(00),124		
 		DWORD 124, 108 dup(45),124
+		DWORD 124, 108 dup(00),124
+		DWORD 124, 108 dup(00),124
 		
 		
 .code
 
 ClearScreen PROC
 	mov ebx, OFFSET tela ;Move the tela 2D array into ebx
-	mov ecx, 0 ;intialize the counter
-	mov eax,00
+	add ebx, 1320
+	mov ecx, 330 ;intialize the counter
+	mov edx,00
 Clear: 
-	
-	mov [ebx], eax ;Move the indirect value of ebx postion 1 into eax
+	mov eax, [ebx]
+	cmp eax , 124
+	je invalido
+	mov [ebx], edx ;Move the indirect value of ebx postion 1 into eax
+invalido:
 	add ebx, 4 ;Move to the next offset position
 	inc ecx ;Increment the counter
-	cmp ecx, 6050
+	cmp ecx, 5610
 	jne Clear
-
 	ret
 ClearScreen ENDP
 
@@ -173,6 +189,7 @@ main PROC
 	mov edx, OFFSET tela
 leia:
 	call ClearScreen 
+	INVOKE desenhaVida
 	INVOKE setPosNave1
 	INVOKE setPosNave2
 	INVOKE mostrarTiros
@@ -184,8 +201,6 @@ leia:
 	mov playerPress , 1
 	cmp al,106
 	je Atirou
-Controles:
-	mov playerPress , 1
 	cmp al,97
 	je MudarEsquerda
 	cmp al,100
@@ -205,6 +220,9 @@ Controles:
 	je MudarCima
 	cmp al,113	
 	je fim
+
+Controles:
+	mov playerPress , 2
 	movzx eax, Byte PTR nave2.eixo
 	cmp eax,1
 	je MoverDireita
@@ -370,7 +388,6 @@ setPosNave1 PROC	USES eax ebx ecx ebx
 		
 NaveEsquerda:
 	mov edx,254
-	mov ecx,0
 	add ebx, 8
 	mov [ebx],edx
 	add ebx, 8
@@ -390,47 +407,31 @@ NaveEsquerda:
 	
 NaveDireita:
 	mov edx,254
-	mov ecx,0
 	mov [ebx],edx
-	add ebx, 4
-	mov [ebx],ecx
-	add ebx, 4
+	add ebx, 8
 	mov [ebx],edx
 	mov ebx,eax
 	add ebx,448
 	mov [ebx],edx
-	add ebx, 4
-	mov [ebx],ecx
-	add ebx, 4
+	add ebx, 8
 	mov [ebx],edx
 	mov ebx,eax
 	add ebx,880
 	mov [ebx],edx
-	add ebx, 4
-	mov [ebx],ecx
-	add ebx, 4
+	add ebx, 8
 	mov [ebx],edx
 	jmp fim
 
 NaveCima:
 	mov edx,254
-	mov ecx,0
-	mov [ebx],ecx
-	add ebx, 4
-	add ebx, 4
+	add ebx, 12
 	mov [ebx],edx
-	add ebx, 4
-	mov [ebx],ecx
 	mov ebx,eax
 	add ebx,440
 	mov [ebx],edx
-	add ebx, 4
-	mov [ebx],ecx
-	add ebx, 4
+	add ebx, 8
 	mov [ebx],edx
-	add ebx, 4
-	mov [ebx],ecx
-	add ebx, 4
+	add ebx, 8
 	mov [ebx],edx
 	mov ebx,eax
 	add ebx,880
@@ -441,20 +442,15 @@ NaveCima:
 	
 NaveBaixo:
 	mov edx,254
-	mov ecx,0
 	mov [ebx],edx
 	add ebx, 16
 	mov [ebx],edx
 	mov ebx,eax
 	add ebx,440
 	mov [ebx],edx
-	add ebx, 4
-	mov [ebx],ecx
-	add ebx, 4
+	add ebx, 8
 	mov [ebx],edx
-	add ebx, 4
-	mov [ebx],ecx
-	add ebx, 4
+	add ebx, 8
 	mov [ebx],edx
 	mov ebx,eax
 	add ebx,888
@@ -491,7 +487,6 @@ setPosNave2 PROC	USES eax ebx ecx ebx
 		
 NaveEsquerda:
 	mov edx,254
-	mov ecx,0
 	add ebx, 8
 	mov [ebx],edx
 	add ebx, 8
@@ -511,47 +506,31 @@ NaveEsquerda:
 	
 NaveDireita:
 	mov edx,254
-	mov ecx,0
 	mov [ebx],edx
-	add ebx, 4
-	mov [ebx],ecx
-	add ebx, 4
+	add ebx, 8
 	mov [ebx],edx
 	mov ebx,eax
 	add ebx,448
 	mov [ebx],edx
-	add ebx, 4
-	mov [ebx],ecx
-	add ebx, 4
+	add ebx, 8
 	mov [ebx],edx
 	mov ebx,eax
 	add ebx,880
 	mov [ebx],edx
-	add ebx, 4
-	mov [ebx],ecx
-	add ebx, 4
+	add ebx, 8
 	mov [ebx],edx
 	jmp fim
 
 NaveCima:
 	mov edx,254
-	mov ecx,0
-	mov [ebx],ecx
-	add ebx, 4
-	add ebx, 4
+	add ebx, 12
 	mov [ebx],edx
-	add ebx, 4
-	mov [ebx],ecx
 	mov ebx,eax
 	add ebx,440
 	mov [ebx],edx
-	add ebx, 4
-	mov [ebx],ecx
-	add ebx, 4
+	add ebx, 8
 	mov [ebx],edx
-	add ebx, 4
-	mov [ebx],ecx
-	add ebx, 4
+	add ebx, 8
 	mov [ebx],edx
 	mov ebx,eax
 	add ebx,880
@@ -562,20 +541,15 @@ NaveCima:
 	
 NaveBaixo:
 	mov edx,254
-	mov ecx,0
 	mov [ebx],edx
 	add ebx, 16
 	mov [ebx],edx
 	mov ebx,eax
 	add ebx,440
 	mov [ebx],edx
-	add ebx, 4
-	mov [ebx],ecx
-	add ebx, 4
+	add ebx, 8
 	mov [ebx],edx
-	add ebx, 4
-	mov [ebx],ecx
-	add ebx, 4
+	add ebx, 8
 	mov [ebx],edx
 	mov ebx,eax
 	add ebx,888
@@ -696,72 +670,270 @@ fim:
 	
 criaTiro ENDP
 
+bateu PROC
+	LOCAL temp : DWORD
+Nv1RDano:	
+	mov ah,Byte PTR  nave1.eixo
+	mov ecx,6
+	cmp ah, 1
+	je Nv1ColDir
+	cmp ah, 2
+	je Nv1ColCim
+	cmp ah, 3
+	je Nv1ColEsq
+	cmp ah, 4
+	je Nv1ColBai
+
+Nv1ColDir:
+	mov ebx, OFFSET colisaoDir
+	jmp Nv1TestCol
+Nv1ColCim:
+	mov ebx, OFFSET colisaoCim
+	jmp Nv1TestCol
+Nv1ColEsq:
+	mov ebx, OFFSET colisaoEsq
+	jmp Nv1TestCol
+Nv1ColBai:
+	mov ebx, OFFSET colisaoBai
+	jmp Nv1TestCol
+	
+Nv1TestCol:
+	movzx eax,byte PTR  [ebx] 
+	mov temp, ecx
+	add eax, nave1.x
+	mov ecx,[edx]
+	cmp eax, ecx
+	je Nv1XIgual
+	mov ecx,temp
+	add ebx,2
+	loop Nv1TestCol
+	jmp Nv2RDano
+Nv1XIgual:
+	movzx eax,byte PTR  [ebx + 4] 
+	add eax, nave1.y
+	mov temp,ecx
+	mov ecx,[edx + 4]
+	cmp eax,ecx
+	je Nv1YIgual
+	mov ecx,temp
+	add ebx,2
+	loop Nv1TestCol
+	jmp Nv2RDano
+Nv1YIgual:
+	mov ecx,temp
+	mov ah,nave1.vida
+	dec ah
+	;cmp ebx, 0  quando uma nave morre
+	mov nave1.vida , ah
+	jmp Nv2RDano
+
+Nv2RDano:	
+	mov ah,Byte PTR  nave2.eixo
+	mov ecx,6
+	cmp ah, 1
+	je Nv2ColDir
+	cmp ah, 2
+	je Nv2ColCim
+	cmp ah, 3
+	je Nv2ColEsq
+	cmp ah, 4
+	je Nv2ColBai
+
+Nv2ColDir:
+	mov ebx, OFFSET colisaoDir
+	jmp Nv2TestCol
+Nv2ColCim:
+	mov ebx, OFFSET colisaoCim
+	jmp Nv2TestCol
+Nv2ColEsq:
+	mov ebx, OFFSET colisaoEsq
+	jmp Nv2TestCol
+Nv2ColBai:
+	mov ebx, OFFSET colisaoBai
+	jmp Nv2TestCol
+	
+Nv2TestCol:
+	movzx eax,byte PTR  [ebx] 
+	mov temp, ecx
+	add eax, nave2.x
+	mov ecx,[edx]
+	cmp eax, ecx
+	je Nv2XIgual
+	mov ecx,temp
+	add ebx,2
+	loop Nv2TestCol
+	jmp Fim
+Nv2XIgual:
+	movzx eax,byte PTR  [ebx + 1] 
+	add eax, nave2.y
+	mov temp,ecx
+	mov ecx,[edx + 4]
+	cmp eax,ecx
+	je Nv2YIgual
+	mov ecx, temp
+	add ebx,2
+	loop Nv2TestCol
+	jmp Fim
+Nv2YIgual:
+	mov ah,nave2.vida
+	cmp ah,0
+	je perdeu
+	dec ah
+perdeu:
+	mov nave2.vida , ah
+	jmp Fim
+Fim:
+	ret
+bateu ENDP
+
 mostrarTiros PROC
+	LOCAL temp:DWORD, countShoot: DWORD
+	;int 3
 	movzx ecx , WORD PTR quantTiros
 	cmp ecx, 0
 	je NenhumTiro
 	mov edx, nodeInicio
 desenhaTiro:
+	mov countShoot,ecx
+	INVOKE bateu
 	mov eax,110
 	mov ebx, DWORD PTR [edx+4]
-	push edx
+	mov  temp,edx
 	mul ebx
 	mov ebx, 4
 	mul ebx
 	mov ebx,eax
-	pop edx
+	mov ebx,eax
+	mov  edx,temp
 	mov  eax, DWORD PTR [edx]
 	push ecx
+	mov temp,edx
 	mov ecx,4
-	push edx
 	mul ecx
-	pop edx
+	mov edx,temp
 	pop ecx
 	add eax,ebx
 	mov ebx, OFFSET tela 
 	add ebx, eax
 	mov eax,42
 	mov [ebx],eax
-	mov eax, DWORD PTR [edx+8]
-	cmp eax ,1	
+	mov ah, byte PTR [edx+8]
+	cmp ah ,1	
 	je MTiroDireita
-	cmp eax ,2 
+	cmp ah ,2 
 	je MTiroCima
-	cmp eax ,3 
+	cmp ah ,3 
 	je MTiroEsquerda
-	cmp eax ,4 
+	cmp ah ,4 
 	je MTiroBaixo
-	
 MTiroDireita:
 	mov eax, DWORD PTR [edx]
-	add eax, 4
+	inc eax
 	mov DWORD PTR [edx],eax
 	jmp fim
 MTiroCima:
 	mov eax, DWORD PTR [edx + 4]
-	push edx
-	sub eax, 4
-	pop edx
+	dec eax
 	mov DWORD PTR [edx + 4],eax
 	jmp fim
 MTiroEsquerda:
 	mov eax, DWORD PTR [edx]
-	push edx
-	sub eax, 4
-	pop edx
+	dec eax
 	mov DWORD PTR [edx],eax
 	jmp fim
 MTiroBaixo:
 	mov eax, DWORD PTR [edx + 4]
-	add eax, 4
+	inc eax
 	mov DWORD PTR [edx + 4],eax
 	jmp fim
-	
 fim:
 	add edx,0Ch
 	mov edx, [edx]
-	loop desenhaTiro
+	mov ecx,countShoot
+	dec ecx
+	cmp ecx , 0
+	jne desenhaTiro
 NenhumTiro:
 	ret
 mostrarTiros ENDP
+
+desenhaVida PROC
+	mov ebx, OFFSET tela
+	add ebx,800
+	mov eax, 80
+	mov [ebx], eax
+	mov eax, 108
+	mov [ebx + 4], eax
+	mov eax, 97
+	mov [ebx + 8], eax
+	mov eax, 121
+	mov [ebx + 12], eax
+	mov eax, 101
+	mov [ebx + 16], eax
+	mov eax, 114
+	mov [ebx + 20], eax
+	mov eax, 49
+	mov [ebx + 28], eax
+	mov eax, 58
+	mov [ebx + 36], eax
+	add ebx,44
+	mov ecx,3 
+	movzx edx, nave1.vida
+vida1:
+	cmp edx, 0
+	je zera1
+	jne tem1
+zera1:
+	mov eax,0
+	jmp imprime1
+tem1:
+	mov eax,254
+	dec edx
+imprime1:
+	mov [ebx],eax
+	add ebx , 8
+	dec edx
+	loop vida1
+	
+Ply2:
+	mov ebx, OFFSET tela
+	add ebx,22900
+	mov eax, 80
+	mov [ebx], eax
+	mov eax, 108
+	mov [ebx + 4], eax
+	mov eax, 97
+	mov [ebx + 8], eax
+	mov eax, 121
+	mov [ebx + 12], eax
+	mov eax, 101
+	mov [ebx + 16], eax
+	mov eax, 114
+	mov [ebx + 20], eax
+	mov eax, 50
+	mov [ebx + 28], eax
+	mov eax, 58
+	mov [ebx + 36], eax
+	add ebx,44
+	mov ecx,3 
+	movzx edx, nave2.vida
+vida2:
+	cmp edx, 0
+	je zera2
+	jne tem2
+zera2:
+	mov eax,0
+	jmp imprime2
+tem2:
+	mov eax,254
+	dec edx
+imprime2:
+	mov [ebx],eax
+	add ebx , 8
+	loop vida2
+fim:
+	
+	ret
+desenhaVida ENDP
+
 END main
