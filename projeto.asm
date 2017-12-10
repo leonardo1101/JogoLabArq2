@@ -47,9 +47,10 @@ noRemover DWORD 0
 nodeInicio DWORD 0
 hHeap DWORD ?
 dwFlags DWORD HEAP_ZERO_MEMORY
+nodePai DWORD 0
 nodeInst node<>
 quantTiros word 0
-
+acertou byte 0
 rocketSpace BYTE "						ROCKET SPACE", 0Dh,0Ah,0
 
 telaMenu BYTE "1. Jogar", 0Dh, 0Ah,"2. Instrucoes", 0Dh, 0Ah,
@@ -185,177 +186,210 @@ Draw ENDP
 main PROC
 	INVOKE GetProcessHeap
 	mov hHeap,eax
-	
+	mov  eax,lightGray+(black*16)
+	call SetTextColor
 	mov edx, OFFSET tela
 leia:
 	call ClearScreen 
+	INVOKE mostrarTiros
 	INVOKE desenhaVida
+	call Draw
 	INVOKE setPosNave1
 	INVOKE setPosNave2
-	INVOKE mostrarTiros
-	call Draw
 	call ReadKey
+	
 	mov playerPress , 2
 	cmp al,48
 	je Atirou
+	
 	mov playerPress , 1
 	cmp al,106
 	je Atirou
+	
+ControlesP1:
 	cmp al,97
-	je MudarEsquerda
+	je MudarEsquerdaP1
 	cmp al,100
-	je MudarDireita
+	je MudarDireitaP1
 	cmp al,115
-	je MudarBaixo
+	je MudarBaixoP1
 	cmp al,119
-	je MudarCima
-	mov playerPress , 2
+	je MudarCimaP1
+	
+ControlesP2:	
 	cmp al,52
-	je MudarEsquerda
+	je MudarEsquerdaP2
 	cmp al,54
-	je MudarDireita
+	je MudarDireitaP2
 	cmp al,53
-	je MudarBaixo
+	je MudarBaixoP2
 	cmp al,56
-	je MudarCima
+	je MudarCimaP2
 	cmp al,113	
 	je fim
 
-Controles:
-	mov playerPress , 2
-	movzx eax, Byte PTR nave2.eixo
-	cmp eax,1
-	je MoverDireita
-	cmp eax,2
-	je MoverCima
-	cmp eax,3
-	je MoverEsquerda
-	cmp eax,4
-	je MoverBaixo
-	
-MoverJogador1:
-	mov playerPress , 1
+MovP1:
 	movzx eax, Byte PTR nave1.eixo
 	cmp eax,1
-	je MoverDireita
+	je MoverDireitaP1
 	cmp eax,2
-	je MoverCima
+	je MoverCimaP1
 	cmp eax,3
-	je MoverEsquerda
+	je MoverEsquerdaP1
 	cmp eax,4
-	je MoverBaixo
+	je MoverBaixoP1
+	
+MovP2:
+	movzx eax, Byte PTR nave2.eixo
+	cmp eax,1
+	je MoverDireitaP2
+	cmp eax,2
+	je MoverCimaP2
+	cmp eax,3
+	je MoverEsquerdaP2
+	cmp eax,4
+	je MoverBaixoP2
 	jmp leia
 	
 Atirou:	
 	INVOKE criaTiro
-	jmp Controles
-MudarDireita:
+	jmp MovP1
+	
+MudarDireitaP1:
 	mov al , 1
-	mov bh, playerPress
-	cmp bh,2
-	je p2MD
 	mov Byte PTR nave1.eixo , al
-	jmp leia
-p2MD:
+	jmp MovP1
+	
+MudarDireitaP2:
+	mov al , 1
 	mov Byte PTR nave2.eixo , al
-	jmp leia
+	jmp MovP1
 
-MudarEsquerda:
+MudarEsquerdaP1:
 	mov al , 3
-	mov bh, playerPress
-	cmp bh,2
-	je p2ME
 	mov Byte PTR nave1.eixo , al
-	jmp leia
-p2ME:
+	jmp MovP1
+	
+MudarEsquerdaP2:
+	mov al , 3
 	mov Byte PTR nave2.eixo , al
-	jmp leia
-MudarCima:
+	jmp MovP1
+	
+MudarCimaP1:
 	mov al , 2
-	mov bh, playerPress
-	cmp bh,2
-	je p2MC
 	mov Byte PTR nave1.eixo , al
-	jmp leia
-p2MC:
+	jmp MovP1
+MudarCimaP2:
+	mov al , 2
 	mov Byte PTR nave2.eixo , al
-	jmp leia
+	jmp MovP1
 
-MudarBaixo:
+MudarBaixoP1:
 	mov al , 4
-	mov bh, playerPress
-	cmp bh,2
-	je p2MB
 	mov Byte PTR nave1.eixo , al
-	jmp leia
-p2MB:
+	jmp MovP1
+	
+MudarBaixoP2:
+	mov al , 4
 	mov Byte PTR nave2.eixo , al
-	jmp leia
+	jmp MovP1
 
-MoverDireita:
-	mov bh, playerPress
-	cmp bh,2
+MoverDireitaP1:
 	mov dx , WORD PTR nave1.x
 	inc dx
-	inc dx
-	je p2MOD
+	cmp dx, 104
+	ja teleMovDP1
+	jb incMovDP1
+teleMovDP1:
+	mov dx,1
+incMovDP1:
 	mov WORD PTR nave1.x , dx
-	jmp leia
-p2MOD:
+	jmp MovP2
+	
+MoverDireitaP2:
 	mov dx , WORD PTR nave2.x
 	inc dx
-	inc dx
+	cmp dx, 104
+	ja teleMovDP2
+	jb incMovDP2
+teleMovDP2:
+	mov dx,1
+incMovDP2:
 	mov WORD PTR nave2.x , dx
-	jmp MoverJogador1
+	jmp leia
 	
 	
-MoverEsquerda:
-	mov bh, playerPress
-	cmp bh,2
-	je p2MOE
+MoverEsquerdaP1:
 	mov dx ,  WORD PTR nave1.x
 	dec dx
-	dec dx
+	cmp dx, 0
+	jb teleMovEP1
+	ja decMovEP1
+teleMovEP1:
+	mov dx,104
+decMovEP1:
 	mov WORD PTR nave1.x , dx
-	jmp leia
-p2MOE:
+	jmp MovP2
+	
+MoverEsquerdaP2:
 	mov dx ,  WORD PTR nave2.x
 	dec dx
-	dec dx
+	cmp dx, 0
+	jb teleMovEP2
+	ja decMovEP2
+teleMovEP2:
+	mov dx,104
+decMovEP2:
 	mov WORD PTR nave2.x , dx
-	jmp MoverJogador1
+	jmp leia
 
-MoverCima:
-	mov bh, playerPress
-	cmp bh,2
-	je p2MOC
+MoverCimaP1:
 	mov dx ,  WORD PTR nave1.y
 	dec dx
-	dec dx
+	cmp dx, 3
+	jb teleMovCP1
+	ja decMovCP1
+teleMovCP1:
+	mov dx,46
+decMovCP1:
 	mov WORD PTR nave1.y , dx
-	jmp leia
-p2MOC:
+	jmp MovP2
+	
+MoverCimaP2:
 	mov dx ,  WORD PTR nave2.y
 	dec dx
-	dec dx
+	cmp dx, 2
+	jb teleMovCP2
+	ja decMovCP2
+teleMovCP2:
+	mov dx,50
+decMovCP2:
 	mov WORD PTR nave2.y , dx
-	jmp MoverJogador1
+	jmp leia
 
-MoverBaixo:
-	mov bh, playerPress
-	cmp bh,2
-	je p2MOB
+MoverBaixoP1:
 	mov dx , WORD PTR nave1.y
 	inc dx
-	inc dx
+	cmp dx, 50
+	ja teleMovBP1
+	jb incMovBP1
+teleMovBP1:
+	mov dx,3
+incMovBP1:
 	mov WORD PTR nave1.y , dx
-	jmp leia
-p2MOB:
+	jmp MovP2
+	
+MoverBaixoP2:
 	mov dx , WORD PTR nave2.y
 	inc dx
-	inc dx
+	cmp dx, 50
+	ja teleMovBP2
+	jb incMovBP2
+teleMovBP2:
+	mov dx,3
+incMovBP2:
 	mov WORD PTR nave2.y , dx
-	jmp MoverJogador1
+	jmp leia
 	
 fim:
 	exit
@@ -363,200 +397,253 @@ fim:
 main ENDP
 
 setPosNave1 PROC	USES eax ebx ecx ebx
-	mov ecx,4
-	mov eax,110
-	mov  ebx, DWORD PTR nave1.y
-	mul ebx
-	mul ecx
-	mov ebx,eax
-	mov  eax, DWORD PTR nave1.x
-	mul ecx
-	add eax,ebx
-	mov ebx, OFFSET tela 
-	add ebx, eax
-	mov eax,ebx
+	mov  eax,green+(black*16)
 	
-	movzx  edx,Byte PTR  nave1.eixo
-	cmp edx, 1
+    call SetTextColor
+	mov  dl,byte PTR nave1.x  ;column
+    mov  dh,byte PTR nave1.y  ;row
+	mov bh,dl
+	mov ah,dh
+	mov al,254
+	movzx  ecx,Byte PTR  nave1.eixo
+	cmp ecx, 1
 	je NaveDireita
-	cmp edx, 2
+	cmp ecx, 2
 	je NaveCima
-	cmp edx, 3
+	cmp ecx, 3
 	je NaveEsquerda
-	cmp edx,4
+	cmp ecx,4
 	je NaveBaixo
 		
 NaveEsquerda:
-	mov edx,254
-	add ebx, 8
-	mov [ebx],edx
-	add ebx, 8
-	mov [ebx],edx
-	mov ebx,eax
-	add ebx,440
-	mov [ebx],edx
-	add ebx, 8
-	mov [ebx],edx
-	mov ebx,eax
-	add ebx,880
-	add ebx, 8
-	mov [ebx],edx
-	add ebx, 8
-	mov [ebx],edx
+	add dl,2
+	call Gotoxy
+	call WriteChar
+	add dl,2
+	call Gotoxy
+	call WriteChar
+	inc dh
+	dec dl
+	dec dl
+	dec dl
+	dec dl
+	call Gotoxy
+	call WriteChar
+	add dl,2
+	call Gotoxy
+	call WriteChar
+	inc dh
+	call Gotoxy
+	call WriteChar
+	add dl,2
+	call Gotoxy
+	call WriteChar
 	jmp fim
 	
 NaveDireita:
-	mov edx,254
-	mov [ebx],edx
-	add ebx, 8
-	mov [ebx],edx
-	mov ebx,eax
-	add ebx,448
-	mov [ebx],edx
-	add ebx, 8
-	mov [ebx],edx
-	mov ebx,eax
-	add ebx,880
-	mov [ebx],edx
-	add ebx, 8
-	mov [ebx],edx
+	call Gotoxy
+	call WriteChar
+	add dl,2
+	call Gotoxy
+	call WriteChar
+	inc dh
+	call Gotoxy
+	call WriteChar
+	add dl,2
+	call Gotoxy
+	call WriteChar
+	inc dh
+	dec dl
+	dec dl
+	dec dl
+	dec dl
+	call Gotoxy
+	call WriteChar
+	add dl,2
+	call Gotoxy
+	call WriteChar
 	jmp fim
 
 NaveCima:
-	mov edx,254
-	add ebx, 12
-	mov [ebx],edx
-	mov ebx,eax
-	add ebx,440
-	mov [ebx],edx
-	add ebx, 8
-	mov [ebx],edx
-	add ebx, 8
-	mov [ebx],edx
-	mov ebx,eax
-	add ebx,880
-	mov [ebx],edx
-	add ebx, 16
-	mov [ebx],edx
+
+	add dl,2
+	call Gotoxy
+	call WriteChar
+	inc dh
+	call Gotoxy
+	call WriteChar
+	dec dl
+	dec dl
+	call Gotoxy
+	call WriteChar
+	add dl,4
+	call Gotoxy
+	call WriteChar
+	dec dl
+	dec dl
+	dec dl
+	dec dl
+	inc dh
+	call Gotoxy
+	call WriteChar
+	add dl,4
+	call Gotoxy
+	call WriteChar
 	jmp fim
 	
 NaveBaixo:
-	mov edx,254
-	mov [ebx],edx
-	add ebx, 16
-	mov [ebx],edx
-	mov ebx,eax
-	add ebx,440
-	mov [ebx],edx
-	add ebx, 8
-	mov [ebx],edx
-	add ebx, 8
-	mov [ebx],edx
-	mov ebx,eax
-	add ebx,888
-	mov [ebx],edx
+	call Gotoxy
+	call WriteChar
+	add dl,4
+	call Gotoxy
+	call WriteChar
+	inc dh
+	call Gotoxy
+	call WriteChar
+	dec dl
+	dec dl
+	call Gotoxy
+	call WriteChar
+	dec dl
+	dec dl
+	call Gotoxy
+	call WriteChar
+	inc dh
+	add dl,2
+	call Gotoxy
+	call WriteChar
+	
 	jmp fim
 fim:
+	mov  eax,lightGray+(black*16)
+	call SetTextColor
+	
 	ret 
 setPosNave1 ENDP
 
 
 setPosNave2 PROC	USES eax ebx ecx ebx
-	mov ecx,4
-	mov eax,110
-	mov  ebx, DWORD PTR nave2.y
-	mul ebx
-	mul ecx
-	mov ebx,eax
-	mov  eax, DWORD PTR nave2.x
-	mul ecx
-	add eax,ebx
-	mov ebx, OFFSET tela 
-	add ebx, eax
-	mov eax,ebx
+	mov  eax,blue+(black*16)
 	
-	movzx  edx,Byte PTR  nave2.eixo
-	cmp edx, 1
+    call SetTextColor
+	mov  dl,byte PTR nave2.x  ;column
+    mov  dh,byte PTR nave2.y  ;row
+	mov bh,dl
+	mov ah,dh
+	mov al,254
+	movzx  ecx,Byte PTR  nave2.eixo
+	cmp ecx, 1
 	je NaveDireita
-	cmp edx, 2
+	cmp ecx, 2
 	je NaveCima
-	cmp edx, 3
+	cmp ecx, 3
 	je NaveEsquerda
-	cmp edx,4
+	cmp ecx,4
 	je NaveBaixo
 		
 NaveEsquerda:
-	mov edx,254
-	add ebx, 8
-	mov [ebx],edx
-	add ebx, 8
-	mov [ebx],edx
-	mov ebx,eax
-	add ebx,440
-	mov [ebx],edx
-	add ebx, 8
-	mov [ebx],edx
-	mov ebx,eax
-	add ebx,880
-	add ebx, 8
-	mov [ebx],edx
-	add ebx, 8
-	mov [ebx],edx
+	add dl,2
+	call Gotoxy
+	call WriteChar
+	add dl,2
+	call Gotoxy
+	call WriteChar
+	inc dh
+	dec dl
+	dec dl
+	dec dl
+	dec dl
+	call Gotoxy
+	call WriteChar
+	add dl,2
+	call Gotoxy
+	call WriteChar
+	inc dh
+	call Gotoxy
+	call WriteChar
+	add dl,2
+	call Gotoxy
+	call WriteChar
 	jmp fim
 	
 NaveDireita:
-	mov edx,254
-	mov [ebx],edx
-	add ebx, 8
-	mov [ebx],edx
-	mov ebx,eax
-	add ebx,448
-	mov [ebx],edx
-	add ebx, 8
-	mov [ebx],edx
-	mov ebx,eax
-	add ebx,880
-	mov [ebx],edx
-	add ebx, 8
-	mov [ebx],edx
+	call Gotoxy
+	call WriteChar
+	add dl,2
+	call Gotoxy
+	call WriteChar
+	inc dh
+	call Gotoxy
+	call WriteChar
+	add dl,2
+	call Gotoxy
+	call WriteChar
+	inc dh
+	dec dl
+	dec dl
+	dec dl
+	dec dl
+	call Gotoxy
+	call WriteChar
+	add dl,2
+	call Gotoxy
+	call WriteChar
 	jmp fim
 
 NaveCima:
-	mov edx,254
-	add ebx, 12
-	mov [ebx],edx
-	mov ebx,eax
-	add ebx,440
-	mov [ebx],edx
-	add ebx, 8
-	mov [ebx],edx
-	add ebx, 8
-	mov [ebx],edx
-	mov ebx,eax
-	add ebx,880
-	mov [ebx],edx
-	add ebx, 16
-	mov [ebx],edx
+
+	add dl,2
+	call Gotoxy
+	call WriteChar
+	inc dh
+	call Gotoxy
+	call WriteChar
+	dec dl
+	dec dl
+	call Gotoxy
+	call WriteChar
+	add dl,4
+	call Gotoxy
+	call WriteChar
+	dec dl
+	dec dl
+	dec dl
+	dec dl
+	inc dh
+	call Gotoxy
+	call WriteChar
+	add dl,4
+	call Gotoxy
+	call WriteChar
 	jmp fim
 	
 NaveBaixo:
-	mov edx,254
-	mov [ebx],edx
-	add ebx, 16
-	mov [ebx],edx
-	mov ebx,eax
-	add ebx,440
-	mov [ebx],edx
-	add ebx, 8
-	mov [ebx],edx
-	add ebx, 8
-	mov [ebx],edx
-	mov ebx,eax
-	add ebx,888
-	mov [ebx],edx
+	call Gotoxy
+	call WriteChar
+	add dl,4
+	call Gotoxy
+	call WriteChar
+	inc dh
+	call Gotoxy
+	call WriteChar
+	dec dl
+	dec dl
+	call Gotoxy
+	call WriteChar
+	dec dl
+	dec dl
+	call Gotoxy
+	call WriteChar
+	inc dh
+	add dl,2
+	call Gotoxy
+	call WriteChar
+	
 	jmp fim
 fim:
-	ret 
+	mov  eax,lightGray+(black*16)
+	call SetTextColor
+	ret
 setPosNave2 ENDP
 
 adicionarTiro PROC
@@ -580,6 +667,9 @@ adicionarTiro ENDP
 
 retirarTiro PROC ,
 	endNodeA : DWORD
+	push ebx
+	push eax
+	push edx
 
 	mov ebx, endNodeA
 	add ebx,0Ch
@@ -598,7 +688,11 @@ UmNode:
 Desaloca:
 	
 	INVOKE HeapFree,hHeap,dwFlags,edx
-
+	push ebx
+	push eax
+	pop edx
+	pop eax
+	pop ebx
 	ret
 retirarTiro ENDP
 
@@ -609,12 +703,13 @@ criaTiro PROC
 	mov eax, nave1.x
 	mov ebx, nave1.y
 	mov  dh,Byte PTR  nave1.eixo
+	jmp adiciona
 setTiro2:
 	mov eax, nave2.x
 	mov ebx, nave2.y
 	mov  dh,Byte PTR  nave2.eixo
 	
-	
+adiciona:
 	mov cx, WORD PTR quantTiros
 	inc cx
 	mov WORD PTR quantTiros,cx
@@ -658,7 +753,7 @@ TiroEsquerda:
 	
 TiroBaixo:
 	add eax,2
-	add ebx,4
+	add ebx,5
 	mov dh, 4
 	mov nodeInst.tiroIns.x,eax
 	mov nodeInst.tiroIns.y,ebx
@@ -709,21 +804,23 @@ Nv1TestCol:
 	loop Nv1TestCol
 	jmp Nv2RDano
 Nv1XIgual:
-	movzx eax,byte PTR  [ebx + 4] 
+	movzx eax,byte PTR  [ebx + 1] 
 	add eax, nave1.y
 	mov temp,ecx
 	mov ecx,[edx + 4]
 	cmp eax,ecx
 	je Nv1YIgual
-	mov ecx,temp
+	mov ecx, temp
 	add ebx,2
 	loop Nv1TestCol
 	jmp Nv2RDano
 Nv1YIgual:
-	mov ecx,temp
 	mov ah,nave1.vida
+	mov acertou,1
+	cmp ah,0
+	je morreuP1
 	dec ah
-	;cmp ebx, 0  quando uma nave morre
+morreuP1:
 	mov nave1.vida , ah
 	jmp Nv2RDano
 
@@ -776,10 +873,11 @@ Nv2XIgual:
 	jmp Fim
 Nv2YIgual:
 	mov ah,nave2.vida
+	mov acertou,1
 	cmp ah,0
-	je perdeu
+	je morreuP2
 	dec ah
-perdeu:
+morreuP2:
 	mov nave2.vida , ah
 	jmp Fim
 Fim:
@@ -793,6 +891,7 @@ mostrarTiros PROC
 	cmp ecx, 0
 	je NenhumTiro
 	mov edx, nodeInicio
+	mov nodePai,edx
 desenhaTiro:
 	mov countShoot,ecx
 	INVOKE bateu
@@ -829,26 +928,67 @@ desenhaTiro:
 MTiroDireita:
 	mov eax, DWORD PTR [edx]
 	inc eax
+	inc eax
+	cmp eax, 109
+	ja teleD
+	jb incD
+teleD:
+	mov eax,1
+incD:
 	mov DWORD PTR [edx],eax
 	jmp fim
 MTiroCima:
 	mov eax, DWORD PTR [edx + 4]
 	dec eax
+	dec eax
+	cmp eax, 3
+	jb teleC
+	ja decC
+teleC:
+	mov eax,50
+decC:
 	mov DWORD PTR [edx + 4],eax
 	jmp fim
 MTiroEsquerda:
 	mov eax, DWORD PTR [edx]
 	dec eax
+	dec eax
+	cmp eax, 0
+	jb teleE
+	ja decE
+teleE:
+	mov eax,108
+decE:
 	mov DWORD PTR [edx],eax
 	jmp fim
 MTiroBaixo:
 	mov eax, DWORD PTR [edx + 4]
 	inc eax
+	inc eax
+	cmp eax, 51
+	ja teleB
+	jb incB
+teleB:
+	mov eax,4
+incB:
 	mov DWORD PTR [edx + 4],eax
 	jmp fim
 fim:
+	mov nodePai, edx
 	add edx,0Ch
 	mov edx, [edx]
+	mov bh, acertou
+	cmp bh,1
+	je retTiro
+	jne nRetTiro
+retTiro:
+	mov acertou,0
+	mov bx , WORD PTR quantTiros
+	dec bx
+	mov quantTiros , bx
+	mov ebx, nodePai
+	INVOKE retirarTiro,ebx
+nRetTiro:	
 	mov ecx,countShoot
 	dec ecx
 	cmp ecx , 0
@@ -892,7 +1032,6 @@ tem1:
 imprime1:
 	mov [ebx],eax
 	add ebx , 8
-	dec edx
 	loop vida1
 	
 Ply2:
