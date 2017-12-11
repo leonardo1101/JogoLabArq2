@@ -62,63 +62,143 @@ rocketSpace46  BYTE "   ****     ***  *   *   *   *  *                          
 rocketSpace47  BYTE "      *       *  * * *   *   * *                                                                                   ",0Dh,0Ah,0
 rocketSpace48  BYTE "   **** *   ***  *   *  ***  *  *                                                                                  ",0Dh,0Ah,0
 
+instrucoes0   BYTE "                                                                                                  ",0Dh,0Ah,0
+instrucoes00  BYTE "       *****  *** *** *     *    ***    **   /*\    *****  /*\   ****  /*\            *   *       ",0Dh,0Ah,0
+instrucoes01  BYTE "         *    *_  *   *    * *   *_     * * *   *     *   *   *  *__  *   *   *       * * *       ",0Dh,0Ah,0
+instrucoes02  BYTE "         *    *   *   *   * * *    *    * * *   *   * *   *   *  *  * *   *             *         ",0Dh,0Ah,0
+instrucoes03  BYTE "         *    *** *** *** *   *  ***    **   \*/    ***    \*/   ****  \*/    *         |         ",0Dh,0Ah,0
+instrucoes04  BYTE "                                                                                                  ",0Dh,0Ah,0
+instrucoes05  BYTE "             *****  /*\  ****     *                                                               ",0Dh,0Ah,0
+instrucoes06  BYTE "               *   *   * *__     **   *                                                           ",0Dh,0Ah,0
+instrucoes07  BYTE "             * *   *   * *  *     *                                                               ",0Dh,0Ah,0
+instrucoes08  BYTE "             ***    \*/  **** *   *   *                                                           ",0Dh,0Ah,0
+instrucoes09  BYTE "                                                                                                  ",0Dh,0Ah,0
+instrucoes10  BYTE "                 *     *   /*\   *   * ***         *      ****    **    *       *                 ",0Dh,0Ah,0
+instrucoes11  BYTE "                 **   **  *   *  *   * *_   *     * *     *__     * *    *  *  *                  ",0Dh,0Ah,0
+instrucoes12  BYTE "                 * * * *  *   *   * *  *         * * *       *    * *     ** **                   ",0Dh,0Ah,0
+instrucoes13  BYTE "                 *  *  *   \*/     *   ***  *    *   *    ****    **       * *                    ",0Dh,0Ah,0
+instrucoes14  BYTE "                                                                                                  ",0Dh,0Ah,0
+instrucoes15  BYTE "                  ***  *   *   /*\   /*\  ***        ****                                         ",0Dh,0Ah,0
+instrucoes16  BYTE "                 *__   * _ *  *   * *   *  *    *    *__                                          ",0Dh,0Ah,0
+instrucoes17  BYTE "                    *  *   *  *   * *   *  *         *  *                                         ",0Dh,0Ah,0
+instrucoes18  BYTE "                 ***   *   *   \*/   \*/   *    *    ****                                         ",0Dh,0Ah,0
+instrucoes19  BYTE "                                                                                                  ",0Dh,0Ah,0
+instrucoes20  BYTE "                                                                                                  ",0Dh,0Ah,0
+instrucoes21  BYTE "             *****  /*\  ****    ****                                                  |          ",0Dh,0Ah,0
+instrucoes22  BYTE "               *   *   * *__      __* *                                                *          ",0Dh,0Ah,0
+instrucoes23  BYTE "             * *   *   * *  *    *                                                   * * *        ",0Dh,0Ah,0
+instrucoes24  BYTE "             ***    \*/  **** *  **** *                                              *   *        ",0Dh,0Ah,0
+instrucoes25  BYTE "                                                                                                  ",0Dh,0Ah,0
+instrucoes26  BYTE "                  *     *   /*\   *   * ***      /    \     /     \       \                       ",0Dh,0Ah,0
+instrucoes27  BYTE "                  **   **  *   *  *   * *_   *  /      \   /       \     / \                      ",0Dh,0Ah,0
+instrucoes28  BYTE "                  * * * *  *   *   * *  *       \       \ /        /    /   \                     ",0Dh,0Ah,0
+instrucoes29  BYTE "                  *  *  *   \*/     *   ***  *   \       \        /    /     \                    ",0Dh,0Ah,0
+instrucoes30  BYTE "                                                                                                  ",0Dh,0Ah,0
+instrucoes31  BYTE "                   *** *   *   /*\   /*\  ***        *                                            ",0Dh,0Ah,0
+instrucoes32  BYTE "                  *__  * _ *  *   * *   *  *    *    *                                            ",0Dh,0Ah,0
+instrucoes33  BYTE "                     * *   *  *   * *   *  *         *                                            ",0Dh,0Ah,0
+instrucoes34  BYTE "                  ***  *   *   \*/   \*/   *    *    ****                                         ",0Dh,0Ah,0
+espaco00      BYTE "                                                                                                  ",0Dh,0Ah,0
+espaco01      BYTE "                                                                                                  ",0Dh,0Ah,0
+espaco02      BYTE "                                                                                                  ",0Dh,0Ah,0
+espaco03      BYTE "                                                                                                  ",0Dh,0Ah,0
+espaco04      BYTE "                                                                                                  ",0Dh,0Ah,0
+espaco05      BYTE "                                                                                                  ",0Dh,0Ah,0
+espaco06      BYTE "                                                                                                  ",0Dh,0Ah,0
+espaco07      BYTE "                                                                                                  ",0Dh,0Ah,0
+espaco08      BYTE "                                                                                                  ",0Dh,0Ah,0
+espaco09      BYTE "                                                                                                  ",0Dh,0Ah,0
+espaco10      BYTE "                                                                                                  ",0Dh,0Ah,0
+espaco11      BYTE "                                                                                                  ",0Dh,0Ah,0
+instrucoes35  BYTE "                                                                                                  ",0Dh,0Ah,0
+instrucoes36  BYTE "               /            *                                                                **          \   ",0Dh,0Ah,0
+instrucoes37  BYTE "              < ----       * *                                                               * *   -----  >  ",0Dh,0Ah,0
+instrucoes38  BYTE "               \          * * *                                                              * *         /   ",0Dh,0Ah,0
+instrucoes39  BYTE "                          *   *                                                              **              ",0Dh,0Ah,0
+instrucoes40  BYTE "            *     ***** *** **** *     *     * ***   ***  **** *     ***  ***  ***   *            ",0Dh,0Ah,0
+instrucoes41  BYTE "           * *      *   *_  *    *    * *    * *_   *__   *    *    *__   *_   * *  * *           ",0Dh,0Ah,0
+instrucoes42  BYTE "          * * *     *   *   *    *   * * *     *       *  *            *  *    **  * * *          ",0Dh,0Ah,0
+instrucoes43  BYTE "          *   *     *   *** **** *** *   *     ***  ***   ****      ***   ***  * * *   *          ",0Dh,0Ah,0
+instrucoes44  BYTE "                                                                                                  ",0Dh,0Ah,0
+instrucoes45  BYTE "          *   * ***** *** *   ***  ****   *    **    *       * *    *    ***    *                 ",0Dh,0Ah,0
+instrucoes46  BYTE "          *   *   *    *  *    *     *   * *   * *  * *      *  *  * *   * *   * *                ",0Dh,0Ah,0
+instrucoes47  BYTE "          *   *   *    *  *    *    *   * * *  * * * * *     * *  * * *  **   * * *               ",0Dh,0Ah,0
+instrucoes48  BYTE "          *_ _*   *   *** *** ***  **** *   *  **  *   *     *    *   *  * *  *   *               ",0Dh,0Ah,0
+instrucoes49  BYTE "                                                                                                  ",0Dh,0Ah,0
+instrucoes50  BYTE "           ***   *   *** **     **   /*\    ***** /*\   ****  /*\                                 ",0Dh,0Ah,0
+instrucoes51  BYTE "          *__   * *   *  * *    * * *   *     *  *   *  *__  *   *                                ",0Dh,0Ah,0
+instrucoes52  BYTE "             * * * *  *  **     * * *   *   * *  *   *  *  * *   *                                ",0Dh,0Ah,0
+instrucoes53  BYTE "          ***  *   * *** * *    **   \*/    ***   \*/   ****  \*/                                 ",0Dh,0Ah,0
+instrucoes54  BYTE "                                                                                                  ",0Dh,0Ah,0
+instrucoes55  BYTE "               _                                                                                  ",0Dh,0Ah,0
+instrucoes56  BYTE "        /*\   *  \  *****  ***  *****  ***  *   *   /*\                                |          ",0Dh,0Ah,0
+instrucoes57  BYTE "       *   *  * _/    *    *_     *     *   *   *  *   *   *                           *          ",0Dh,0Ah,0
+instrucoes58  BYTE "       *   *  *  \  * *    *      *     *    * *   *   *                              ***         ",0Dh,0Ah,0
+instrucoes59  BYTE "        \*/   *_ /  ***    ***    *    ***    *     \*/    *                          * *         ",0Dh,0Ah,0
+instrucoes60  BYTE "                                                                                                  ",0Dh,0Ah,0
+instrucoes61  BYTE "                **   ***  *** ***** **  *   * *** **     /*\    *** **  * *** *   * *** ****  /*\ ",0Dh,0Ah,0
+instrucoes62  BYTE "                * *  *_   *_    *   * * *   *  *  * *   *   *    *  * * *  *  ** **  *  *__  *   *",0Dh,0Ah,0
+instrucoes63  BYTE "                * *  *      *   *   **  *   *  *  **    *   *    *  *  **  *  * * *  *  *  * *   *",0Dh,0Ah,0
+instrucoes64  BYTE "                **   ***  ***   *   * * * _ * *** * *    \*/    *** *   * *** *   * *** ****  \*/ ",0Dh,0Ah,0
+instrucoes65  BYTE "                                                                                                  ",0Dh,0Ah,0
+instrucoes66  BYTE "                 *   ***** ***  **     *   **  *  **    /*\     **  * ***  *   ***                ",0Dh,0Ah,0
+instrucoes67  BYTE "                * *    *    *   * *   * *  * * *  * *  *   *    * * * *_   *   *_                 ",0Dh,0Ah,0
+instrucoes68  BYTE "               * * *   *    *   **   * * * *  **  * *  *   *    *  ** *    *   *                  ",0Dh,0Ah,0
+instrucoes69  BYTE "               *   *   *   ***  * *  *   * *   *  **    \*/     *   * ***  *** ***                ",0Dh,0Ah,0
+espaco12      BYTE "                                                                                                  ",0Dh,0Ah,0
+espaco13      BYTE "                                                                                                  ",0Dh,0Ah,0
+espaco14      BYTE "                                                                                                  ",0Dh,0Ah,0
+espaco15      BYTE "                                                                                                  ",0Dh,0Ah,0
+espaco16      BYTE "                                                                                                  ",0Dh,0Ah,0
+espaco17      BYTE "                                                                                                  ",0Dh,0Ah,0
+espaco18      BYTE "                                                                                                  ",0Dh,0Ah,0
+espaco19      BYTE "                                                                                                  ",0Dh,0Ah,0
+espaco20      BYTE "                                                                                                  ",0Dh,0Ah,0
+espaco21      BYTE "                                                                                                  ",0Dh,0Ah,0
+espaco22      BYTE "                                                                                                  ",0Dh,0Ah,0
+espaco23      BYTE "                                                                                                  ",0Dh,0Ah,0
+espaco24      BYTE "                                                                                                  ",0Dh,0Ah,0
+espaco25      BYTE "                                                                                                  ",0Dh,0Ah,0
+espaco26      BYTE "                                                                                                  ",0Dh,0Ah,0
+espaco27      BYTE "                                                                                                  ",0Dh,0Ah,0
+espaco28      BYTE "                                                                                                  ",0Dh,0Ah,0
+espaco29      BYTE "                                                                                                  ",0Dh,0Ah,0
+instrucoes70  BYTE "                                                                                                  ",0Dh,0Ah,0
+instrucoes71  BYTE "               /            *                                                                **          \   ",0Dh,0Ah,0
+instrucoes72  BYTE "              < ----       * *                                                               * *   -----  >  ",0Dh,0Ah,0
+instrucoes73  BYTE "               \          * * *                                                              * *         /   ",0Dh,0Ah,0
+instrucoes74  BYTE "                          *   *                                                              **              ",0Dh,0Ah,0
+
 
 		  
-telaCreditos  BYTE "Desenvolvedores: Rodrigo Pesse de Abreu e Leonardo de Oliveira Peralta.                       ",0Dh,0Ah, 
-			   	   "                                                                                              ",0Dh,0Ah,
-				   "Disciplica: Laboratorio de Arquitetura e Organizacao de Computadores 2.                       ",0Dh,0Ah,
-                   "                                                                                              ",0Dh,0Ah,0				   
-telaCreditos2 BYTE "Docente: Luciano de Oliveira Neris.                                                           ",0Dh,0Ah,
-				   "                                                                                              ",0Dh,0Ah,
-                   "Digite qualquer tecla para voltar ao menu!                                                    ",0Dh,0Ah,
-				   "                                                                                              ",0Dh,0Ah,0
-telaCreditos3 BYTE "                                                                                              ",0Dh,0Ah,
-				   "                                                                                        *   * ",0Dh,0Ah,
-                   "                                                                                        * * * ",0Dh,0Ah,
-				   "                                                                                          *   ",0Dh,0Ah,0
-telaCreditos4 BYTE "                                                * *                                           ",0Dh,0Ah,
-                   "                             - -  - - - -  -  * *                                             ",0Dh,0Ah,
-				   "                                                * *                                       |   ",0Dh,0Ah,
-				   "                                                                                              ",0Dh,0Ah,0
-telaCreditos5 BYTE "          * *                                                                                 ",0Dh,0Ah,
-				   "            * * - - - - - - - - -                                                             ",0Dh,0Ah,
-				   "          * *                                                                                 ",0Dh,0Ah,
-				   "                                                                                          |   ",0Dh,0Ah,0
-telaCreditos6 BYTE "                                                                                          |   ",0Dh,0Ah,
-				   "                                                                                              ",0Dh,0Ah,
-				   "                                                                                              ",0Dh,0Ah,
-				   "                                                                                              ",0Dh,0Ah,0
-telaCreditos7 BYTE "                                                                                          |   ",0Dh,0Ah,
-				   "                                                                                          *   ",0Dh,0Ah,
-                   "                                                                                        * * * ",0Dh,0Ah,
-				   "                                                                                        *   * ",0Dh,0Ah,0
+pula        BYTE "                                                                                              ",0Dh,0Ah,0
+creditos00  BYTE "    **   ***  ***  ***  *  *  *   *  /*\  *   *   *  ***  **    /*\   ***  *** ***  *   * *   ",0Dh,0Ah,0                                                     
+creditos01  BYTE "    * *  *_   *_   *_   ** *  *   * *   * *   *   *  *_   * *  *   *  * *  *_  *_       ***   ",0Dh,0Ah,0                                                     
+creditos02  BYTE "    * *  *      *  *    * **   * *  *   * *    * *   *    * *  *   *  **   *     *  *    *    ",0Dh,0Ah,0                                                     
+creditos03  BYTE "    **   ***  ***  ***  *  *    *    \*/  ***   *    ***  **    \*/   * *  *** ***       |    ",0Dh,0Ah,0 
+creditos04  BYTE "                                                                                              ",0Dh,0Ah,0
+creditos05  BYTE "           *    ***   /*\   **  *    *    ***  **    /*\      * *                             ",0Dh,0Ah,0
+creditos06  BYTE "           *    *_   *   *  * * *   * *   * *  * *  *   *     *  *                            ",0Dh,0Ah,0
+creditos07  BYTE "           *    *    *   *  *  **  * * *  **   * *  *   *     * *                             ",0Dh,0Ah,0
+creditos08  BYTE "           * *  ***   \*/   *   *  *   *  * *  **    \*/      *    *                          ",0Dh,0Ah,0
+creditos09  BYTE "                                                                                              ",0Dh,0Ah,0
+creditos10  BYTE "           ***   /*\   **   ***  ***  ***   /*\        *                                      ",0Dh,0Ah,0
+creditos11  BYTE "           * *  *   *  * *  * *   *   *_   *   *      * *                                     ",0Dh,0Ah,0
+creditos12  BYTE "           **   *   *  * *  **    *   * *  *   *     * * *                                    ",0Dh,0Ah,0
+creditos13  BYTE "           * *   \*/   **   * *  ***  ***   \*/      *   *  *                                 ",0Dh,0Ah,0
+creditos14  BYTE "                                                                                              ",0Dh,0Ah,0
+creditos15  BYTE "    **   /*\  *** *** **  * ***** ***  *               * *                               |    ",0Dh,0Ah,0
+creditos16  BYTE "    * * *   * *   *_  * * *   *   *_                     * * - - - -                          ",0Dh,0Ah,0
+creditos17  BYTE "    * * *   * *   *   *  **   *   *    *               * *                               |    ",0Dh,0Ah,0
+creditos18  BYTE "    **   \*/  *** *** *   *   *   ***                                                         ",0Dh,0Ah,0
+creditos19  BYTE "                                                                                              ",0Dh,0Ah,0
+creditos20  BYTE "           *    *   *  ***  ***   *    **  *  /*\     **  *                                   ",0Dh,0Ah,0
+creditos21  BYTE "           *    *   *  *     *   * *   * * * *   *    * * *                                   ",0Dh,0Ah,0
+creditos22  BYTE "           *    *   *  *     *  * * *  *  ** *   *    *  **                                   ",0Dh,0Ah,0
+creditos23  BYTE "           * *  * * *  ***  *** *   *  *   *  \*/     *   *  *                                ",0Dh,0Ah,0
 				   
 
-				   
-telaInstrucoes  BYTE "O jogo consiste em uma batalha entre duas naves controladas por dois jogadores!             ",0Dh,0Ah, 
-					 "                                                                                            ",0Dh,0Ah,
-					 "Aperte 'D' para continuar ou 'A' para voltar ao menu!                                       ",0Dh,0Ah,
-					 "                                                                                            ",0Dh,0Ah,0
-telaInstrucoesa BYTE "             ",0Dh,0Ah, 
-					 "                                                                                            ",0Dh,0Ah,
-					 "Aperte 'D' para continuar ou 'A' para voltar ao menu!                                       ",0Dh,0Ah,
-					 "                                                                                            ",0Dh,0Ah,0					 
-					
-telaInstrucoes1 BYTE "As cores das naves serao diferentes para a identificacao dos jogadores.                     ",0Dh,0Ah,
-					 "As naves possuem um armamento que sera utilizado para atingir o adversario.                 ",0Dh,0Ah,
-					 "                                                                                            ",0Dh,0Ah,
-					 "Aperte 'D' para continuar, 'A' para voltar!                                                 ",0Dh,0Ah,0	
-					 
-telaInstrucoes2 BYTE "As teclas para a movimentacao das naves sera:",0Dh,0Ah,
-					 "Jogador 1: 'A' = esquerda,   'D' = direita,   'W' = para cima.",0Dh,0Ah,
-					 "           'espaco' = atirar,   'S' = para baixo.", 0Dh,0Ah,
-					 " ", 0Dh,0Ah,
-					 "Jogador 2: '<' = esquerda, '**' = para baixo, '>' = direita",0Dh,0Ah,
-					 "           'enter' = atirar,    '**' = para cima. ", 0Dh,0Ah,
-					 " ", 0Dh,0Ah,
-					 "'A' para voltar uma instrucao, ou 'D' voltar ao menu! ",0Dh,0Ah,0
-					 
-					 
+		 
 
 .code
 main PROC
@@ -422,65 +502,687 @@ main PROC
 	
 	
 	creditos:
+	
     CALL Clrscr    
-    MOV EDX, OFFSET telaCreditos       
-    CALL WriteString 
-	
-	MOV EDX, OFFSET telaCreditos2
-    CALL WriteString 
-	
-	MOV EDX, OFFSET telaCreditos3
-    MOV EAX, blue + (black * 16)
+
+    MOV EDX, OFFSET pula     
+	MOV EAX, blue + (black * 16)
     CALL SetTextColor 	
-    CALL WriteString
-	
-	MOV EDX, OFFSET telaCreditos4	
+    CALL WriteString 
+    
+    MOV EDX, OFFSET creditos00     
+	MOV EAX, blue + (black * 16)
+    CALL SetTextColor 	
     CALL WriteString 
 	
-	MOV EDX, OFFSET telaCreditos5
-	CALL WriteString 
+	    MOV EDX, OFFSET creditos01     
+	MOV EAX, blue + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString 
 	
-	MOV EDX, OFFSET telaCreditos6
-	CALL WriteString
+	    MOV EDX, OFFSET creditos02     
+	MOV EAX, blue + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString 
+
 		
-	MOV EDX, OFFSET telaCreditos6
-	CALL WriteString
+    MOV EDX, OFFSET creditos03     
+	MOV EAX, blue + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString 
+ 
+    MOV EDX, OFFSET creditos04    
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString 
+
+    MOV EDX, OFFSET creditos05     
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString 
+
+    MOV EDX, OFFSET creditos06     
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString 
+
+    MOV EDX, OFFSET creditos07     
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString 
+
+    MOV EDX, OFFSET creditos08     
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString 
+
+    MOV EDX, OFFSET creditos09     
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString 
+
+    MOV EDX, OFFSET creditos10     
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString 
+
+    MOV EDX, OFFSET creditos11     
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString 
+
+    MOV EDX, OFFSET creditos12     
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString 	
+    
+	MOV EDX, OFFSET creditos13    
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString 
+	
+	MOV EDX, OFFSET creditos14    
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString 
+
+	MOV EDX, OFFSET creditos15    
+	MOV EAX, blue + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString 
+
+	MOV EDX, OFFSET creditos16    
+	MOV EAX, blue + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString 
+
+	MOV EDX, OFFSET creditos17    
+	MOV EAX, blue + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString 
+
+	MOV EDX, OFFSET creditos18    
+	MOV EAX, blue + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString 
+
+	MOV EDX, OFFSET creditos19    
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString 
+
+	MOV EDX, OFFSET creditos20    
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString 
+
+	MOV EDX, OFFSET creditos21    
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString 
+
+	MOV EDX, OFFSET creditos22    
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString 
+
+	MOV EDX, OFFSET creditos23    
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString 
 	
 	CALL ReadChar
 	JMP menu
 	
 	instrucoes:
+	
     CALL Clrscr                 
-    MOV EDX, OFFSET telaInstrucoes       
+
+		MOV EDX, OFFSET instrucoes0 
+	MOV EAX, red + (black * 16)
+    CALL SetTextColor 	
     CALL WriteString 
+
+		MOV EDX, OFFSET instrucoes00 
+	MOV EAX, red + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString 
+
+	MOV EDX, OFFSET instrucoes01  
+	MOV EAX, red + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString 
+	
+		MOV EDX, OFFSET instrucoes02  
+	MOV EAX, red + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString 
+
+		MOV EDX, OFFSET instrucoes03
+	MOV EAX, red + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString 	
+	
+		MOV EDX, OFFSET instrucoes04  
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString 
+	
+		MOV EDX, OFFSET instrucoes05 
+	MOV EAX, blue + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString 
+	
+		MOV EDX, OFFSET instrucoes06 
+	MOV EAX, blue + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString 
+	
+		MOV EDX, OFFSET instrucoes07 
+	MOV EAX, blue + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString 
+	
+		MOV EDX, OFFSET instrucoes08 
+	MOV EAX, blue + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString 
+	
+		MOV EDX, OFFSET instrucoes09 
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString 
+	
+		MOV EDX, OFFSET instrucoes10 
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString 
+	
+		MOV EDX, OFFSET instrucoes11 
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString 
+	
+		MOV EDX, OFFSET instrucoes12 
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString 
+	
+		MOV EDX, OFFSET instrucoes13 
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString 
+	
+	MOV EDX, OFFSET instrucoes14
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString 
+	
+		MOV EDX, OFFSET instrucoes15
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString 
+	
+		MOV EDX, OFFSET instrucoes16
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString 
+	
+		MOV EDX, OFFSET instrucoes17
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString 
+	
+		MOV EDX, OFFSET instrucoes18
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString 
+	
+		MOV EDX, OFFSET instrucoes19
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString 
+	
+		MOV EDX, OFFSET instrucoes20
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString 
+	
+		MOV EDX, OFFSET instrucoes21
+	MOV EAX, blue + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString 
+	
+		MOV EDX, OFFSET instrucoes22
+	MOV EAX, blue + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString 
+	
+		MOV EDX, OFFSET instrucoes23
+	MOV EAX, blue + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString 
+	
+		MOV EDX, OFFSET instrucoes24
+	MOV EAX, blue + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString 
+	
+		MOV EDX, OFFSET instrucoes25
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString 
+	
+		MOV EDX, OFFSET instrucoes26
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString 
+	
+		MOV EDX, OFFSET instrucoes27
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString 
+	
+	MOV EDX, OFFSET instrucoes28
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString 
+	
+	MOV EDX, OFFSET instrucoes29
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString 
+	
+	MOV EDX, OFFSET instrucoes30
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString 
+	
+	MOV EDX, OFFSET instrucoes31
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString 
+	
+	MOV EDX, OFFSET instrucoes32
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString 
+	
+	MOV EDX, OFFSET instrucoes33
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString 
+	
+	MOV EDX, OFFSET instrucoes34
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+	MOV EDX, OFFSET espaco00
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	MOV EDX, OFFSET espaco01
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	MOV EDX, OFFSET espaco02
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	MOV EDX, OFFSET espaco03
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+
+	MOV EDX, OFFSET espaco04
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+
+	MOV EDX, OFFSET espaco05
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+
+	MOV EDX, OFFSET espaco06
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+
+	MOV EDX, OFFSET espaco07
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+
+	MOV EDX, OFFSET espaco08
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+
+	MOV EDX, OFFSET espaco09
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+
+	MOV EDX, OFFSET espaco10
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+
+	MOV EDX, OFFSET espaco11
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+	
+		MOV EDX, OFFSET instrucoes35
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+		MOV EDX, OFFSET instrucoes36
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+		MOV EDX, OFFSET instrucoes37
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+		MOV EDX, OFFSET instrucoes38
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+		MOV EDX, OFFSET instrucoes39
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
 	CALL ReadChar
 	CMP AL,'d'
 	JE instrucoes1
-	CMP AL,'a'
+	CMP AL, 'a'
 	JE menu
 	JNE instrucoes
 	
+	
 	instrucoes1:
-    CALL Clrscr                 
-    MOV EDX, OFFSET telaInstrucoes1       
-    CALL WriteString 	
+	
+	CALL Clrscr
+	
+		MOV EDX, OFFSET instrucoes40
+	MOV EAX, blue + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+		MOV EDX, OFFSET instrucoes41
+	MOV EAX, blue + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+		MOV EDX, OFFSET instrucoes42
+	MOV EAX, blue + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+		MOV EDX, OFFSET instrucoes43
+	MOV EAX, blue + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+		MOV EDX, OFFSET instrucoes44
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+		MOV EDX, OFFSET instrucoes45
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+		MOV EDX, OFFSET instrucoes46
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+		MOV EDX, OFFSET instrucoes47
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+		MOV EDX, OFFSET instrucoes48
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+		MOV EDX, OFFSET instrucoes49
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+		MOV EDX, OFFSET instrucoes50
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+		MOV EDX, OFFSET instrucoes51
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+		MOV EDX, OFFSET instrucoes52
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+		MOV EDX, OFFSET instrucoes53
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+		MOV EDX, OFFSET instrucoes54
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+		MOV EDX, OFFSET instrucoes55
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+		MOV EDX, OFFSET instrucoes56
+	MOV EAX, red + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+		MOV EDX, OFFSET instrucoes57
+	MOV EAX, red + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+		MOV EDX, OFFSET instrucoes58
+	MOV EAX, red + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+		MOV EDX, OFFSET instrucoes59
+	MOV EAX, red + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+			MOV EDX, OFFSET instrucoes60
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+			MOV EDX, OFFSET instrucoes61
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+			MOV EDX, OFFSET instrucoes62
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+			MOV EDX, OFFSET instrucoes63
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+			MOV EDX, OFFSET instrucoes64
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+			MOV EDX, OFFSET instrucoes65
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+			MOV EDX, OFFSET instrucoes66
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+			MOV EDX, OFFSET instrucoes67
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+			MOV EDX, OFFSET instrucoes68
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+			MOV EDX, OFFSET instrucoes69
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+	MOV EDX, OFFSET espaco12
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+	MOV EDX, OFFSET espaco13
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+	MOV EDX, OFFSET espaco14
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+	MOV EDX, OFFSET espaco15
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+
+	MOV EDX, OFFSET espaco16
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+
+	MOV EDX, OFFSET espaco17
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+
+	MOV EDX, OFFSET espaco18
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+
+	MOV EDX, OFFSET espaco19
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+
+	MOV EDX, OFFSET espaco20
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+
+	MOV EDX, OFFSET espaco21
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+
+	MOV EDX, OFFSET espaco22
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+
+	MOV EDX, OFFSET espaco23
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+		MOV EDX, OFFSET espaco24
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+		MOV EDX, OFFSET espaco25
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+		MOV EDX, OFFSET espaco26
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+		MOV EDX, OFFSET espaco27
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+			MOV EDX, OFFSET espaco28
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+			MOV EDX, OFFSET espaco29
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+	
+		MOV EDX, OFFSET instrucoes70
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+		MOV EDX, OFFSET instrucoes71
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+		MOV EDX, OFFSET instrucoes72
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+		MOV EDX, OFFSET instrucoes73
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+		MOV EDX, OFFSET instrucoes74
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
 	CALL ReadChar
 	CMP AL,'d'
-	JE instrucoes2
+	JE menu
 	CMP AL, 'a'
 	JE instrucoes
 	JNE instrucoes1
-	
-	instrucoes2:
-    CALL Clrscr                 
-    MOV EDX, OFFSET telaInstrucoes2       
-    CALL WriteString 	
-	CALL ReadChar
-	CMP AL,'a'
-	JE instrucoes1
-	CMP AL,'d'
-	JE menu
-	JNE instrucoes2	
 	
 	;configuracoes:
 
