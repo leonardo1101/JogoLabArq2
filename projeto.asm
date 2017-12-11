@@ -1,3 +1,4 @@
+IncludeLib winmm.lib
 Include Irvine32.inc
 
 ;Funções
@@ -9,6 +10,8 @@ adicionarTiro PROTO
 mostrarTiros PROTO
 retirarTiro PROTO ,  endNodeA : DWORD
 bateu PROTO
+PlaySound PROTO, pszSound:PTR BYTE, hmod:DWORD, fdwSound:DWORD
+
 
 ;Estruturas
 crd STRUCT
@@ -42,6 +45,16 @@ colisaoDir crd <0,0>,<2,0>,<2,1>,<4,1>,<0,2>,<2,2>
 colisaoEsq crd <2,0>,<4,0>,<0,1>,<2,1>,<2,2>,<4,2>
 colisaoCim crd <2,0>,<0,1>,<2,1>,<4,1>,<0,2>,<4,2>
 colisaoBai crd <0,0>,<4,0>,<0,1>,<2,1>,<4,1>,<2,2>
+
+deviceConnect BYTE "DeviceConnect",0
+
+SND_ALIAS    DWORD 00010000h
+SND_RESOURCE DWORD 00040005h
+SND_FILENAME DWORD 00020000h
+
+tiroSoundF BYTE "c:\\LabArq2\MASM\shoot.wav",0
+bateuSoundF BYTE "c:\\LabArq2\MASM\bateu.wav",0
+fimSoundF BYTE "c:\\LabArq2\MASM\fim.wav",0
 
 noRemover DWORD 0 
 nodeInicio DWORD 0
@@ -184,6 +197,7 @@ Print:
 Draw ENDP
 
 main PROC
+	INVOKE PlaySound, OFFSET deviceConnect, NULL, SND_ALIAS
 	INVOKE GetProcessHeap
 	mov hHeap,eax
 	mov  eax,lightGray+(black*16)
@@ -199,11 +213,11 @@ leia:
 	call ReadKey
 	
 	mov playerPress , 2
-	cmp al,48
+	cmp al,108
 	je Atirou
 	
 	mov playerPress , 1
-	cmp al,106
+	cmp al,104
 	je Atirou
 	
 ControlesP1:
@@ -217,15 +231,15 @@ ControlesP1:
 	je MudarCimaP1
 	
 ControlesP2:	
-	cmp al,52
+	cmp dx,25h
 	je MudarEsquerdaP2
-	cmp al,54
+	cmp dx,27h
 	je MudarDireitaP2
-	cmp al,53
+	cmp dx,28h
 	je MudarBaixoP2
-	cmp al,56
+	cmp dx,26h
 	je MudarCimaP2
-	cmp al,113	
+	cmp dx,1Bh	
 	je fim
 
 MovP1:
@@ -252,6 +266,7 @@ MovP2:
 	jmp leia
 	
 Atirou:	
+    INVOKE PlaySound, OFFSET tiroSoundF, NULL, SND_FILENAME
 	INVOKE criaTiro
 	jmp MovP1
 	
@@ -648,7 +663,6 @@ setPosNave2 ENDP
 
 adicionarTiro PROC
 
-	
 	mov ecx,nodeInicio
 	mov DWORD PTR nodeInst.pointer, ecx
 	INVOKE HeapAlloc,hHeap,dwFlags,SIZENODE
@@ -672,6 +686,9 @@ retirarTiro PROC ,
 	push edx
 
 	mov ebx, endNodeA
+	mov edx, nodeInicio
+	cmp ebx,edx
+	je nodeInicioDel
 	add ebx,0Ch
 	mov eax, [ebx]
 	cmp eax, 0
@@ -684,12 +701,14 @@ retirarTiro PROC ,
 
 UmNode:
 	mov edx, endNodeA 
-
+	jmp Desaloca
+nodeInicioDel:
+	mov eax, [edx + 0ch]
+	mov nodeInicio,eax
+	jmp Desaloca
 Desaloca:
 	
 	INVOKE HeapFree,hHeap,dwFlags,edx
-	push ebx
-	push eax
 	pop edx
 	pop eax
 	pop ebx
@@ -733,7 +752,9 @@ TiroDireita:
 	
 TiroCima:
 	add eax,2
-	inc ebx
+	dec ebx
+	dec ebx
+	dec ebx
 	mov dh, 2
 	mov nodeInst.tiroIns.x,eax
 	mov nodeInst.tiroIns.y,ebx
@@ -815,6 +836,7 @@ Nv1XIgual:
 	loop Nv1TestCol
 	jmp Nv2RDano
 Nv1YIgual:
+	INVOKE PlaySound, OFFSET bateuSoundF, NULL, SND_FILENAME
 	mov ah,nave1.vida
 	mov acertou,1
 	cmp ah,0
@@ -872,6 +894,7 @@ Nv2XIgual:
 	loop Nv2TestCol
 	jmp Fim
 Nv2YIgual:
+	INVOKE PlaySound, OFFSET bateuSoundF, NULL, SND_FILENAME
 	mov ah,nave2.vida
 	mov acertou,1
 	cmp ah,0
@@ -885,7 +908,7 @@ Fim:
 bateu ENDP
 
 mostrarTiros PROC
-	LOCAL temp:DWORD, countShoot: DWORD
+	LOCAL temp:DWORD, countShoot: DWORD, tempNode: DWORD
 	;int 3
 	movzx ecx , WORD PTR quantTiros
 	cmp ecx, 0
@@ -894,8 +917,10 @@ mostrarTiros PROC
 	mov nodePai,edx
 desenhaTiro:
 	mov countShoot,ecx
+	mov tempNode, edx
 	INVOKE bateu
 	mov eax,110
+	mov edx,tempNode
 	mov ebx, DWORD PTR [edx+4]
 	mov  temp,edx
 	mul ebx
@@ -954,8 +979,8 @@ MTiroEsquerda:
 	dec eax
 	dec eax
 	cmp eax, 0
-	jb teleE
-	ja decE
+	JLE  teleE
+	JGE  decE
 teleE:
 	mov eax,108
 decE:
