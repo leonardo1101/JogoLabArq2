@@ -68,31 +68,37 @@ instrucoes01  BYTE "         *    *_  *   *    * *   *_     * * *   *     *   * 
 instrucoes02  BYTE "         *    *   *   *   * * *    *    * * *   *   * *   *   *  *  * *   *             *         ",0Dh,0Ah,0
 instrucoes03  BYTE "         *    *** *** *** *   *  ***    **   \*/    ***    \*/   ****  \*/    *         |         ",0Dh,0Ah,0
 instrucoes04  BYTE "                                                                                                  ",0Dh,0Ah,0
+espacoa       BYTE "                                                                                                  ",0Dh,0Ah,0
 instrucoes05  BYTE "             *****  /*\  ****     *                                                               ",0Dh,0Ah,0
 instrucoes06  BYTE "               *   *   * *__     **   *                                                           ",0Dh,0Ah,0
 instrucoes07  BYTE "             * *   *   * *  *     *                                                               ",0Dh,0Ah,0
 instrucoes08  BYTE "             ***    \*/  **** *   *   *                                                           ",0Dh,0Ah,0
+espacob       BYTE "                                                                                                  ",0Dh,0Ah,0
 instrucoes09  BYTE "                                                                                                  ",0Dh,0Ah,0
 instrucoes10  BYTE "                 *     *   /*\   *   * ***         *      ****    **    *       *                 ",0Dh,0Ah,0
 instrucoes11  BYTE "                 **   **  *   *  *   * *_   *     * *     *__     * *    *  *  *                  ",0Dh,0Ah,0
 instrucoes12  BYTE "                 * * * *  *   *   * *  *         * * *       *    * *     ** **                   ",0Dh,0Ah,0
 instrucoes13  BYTE "                 *  *  *   \*/     *   ***  *    *   *    ****    **       * *                    ",0Dh,0Ah,0
 instrucoes14  BYTE "                                                                                                  ",0Dh,0Ah,0
+espacoc       BYTE "                                                                                                  ",0Dh,0Ah,0
 instrucoes15  BYTE "                  ***  *   *   /*\   /*\  ***        ****                                         ",0Dh,0Ah,0
 instrucoes16  BYTE "                 *__   * _ *  *   * *   *  *    *    *__                                          ",0Dh,0Ah,0
 instrucoes17  BYTE "                    *  *   *  *   * *   *  *         *  *                                         ",0Dh,0Ah,0
 instrucoes18  BYTE "                 ***   *   *   \*/   \*/   *    *    ****                                         ",0Dh,0Ah,0
 instrucoes19  BYTE "                                                                                                  ",0Dh,0Ah,0
+espacod       BYTE "                                                                                                  ",0Dh,0Ah,0
 instrucoes20  BYTE "                                                                                                  ",0Dh,0Ah,0
 instrucoes21  BYTE "             *****  /*\  ****    ****                                                  |          ",0Dh,0Ah,0
 instrucoes22  BYTE "               *   *   * *__      __* *                                                *          ",0Dh,0Ah,0
 instrucoes23  BYTE "             * *   *   * *  *    *                                                   * * *        ",0Dh,0Ah,0
 instrucoes24  BYTE "             ***    \*/  **** *  **** *                                              *   *        ",0Dh,0Ah,0
+espacoe       BYTE "                                                                                                  ",0Dh,0Ah,0
 instrucoes25  BYTE "                                                                                                  ",0Dh,0Ah,0
 instrucoes26  BYTE "                  *     *   /*\   *   * ***      /    \     /     \       \                       ",0Dh,0Ah,0
 instrucoes27  BYTE "                  **   **  *   *  *   * *_   *  /      \   /       \     / \                      ",0Dh,0Ah,0
 instrucoes28  BYTE "                  * * * *  *   *   * *  *       \       \ /        /    /   \                     ",0Dh,0Ah,0
 instrucoes29  BYTE "                  *  *  *   \*/     *   ***  *   \       \        /    /     \                    ",0Dh,0Ah,0
+espacof      BYTE "                                                                                                  ",0Dh,0Ah,0
 instrucoes30  BYTE "                                                                                                  ",0Dh,0Ah,0
 instrucoes31  BYTE "                   *** *   *   /*\   /*\  ***        *                                            ",0Dh,0Ah,0
 instrucoes32  BYTE "                  *__  * _ *  *   * *   *  *    *    *                                            ",0Dh,0Ah,0
@@ -104,12 +110,6 @@ espaco02      BYTE "                                                            
 espaco03      BYTE "                                                                                                  ",0Dh,0Ah,0
 espaco04      BYTE "                                                                                                  ",0Dh,0Ah,0
 espaco05      BYTE "                                                                                                  ",0Dh,0Ah,0
-espaco06      BYTE "                                                                                                  ",0Dh,0Ah,0
-espaco07      BYTE "                                                                                                  ",0Dh,0Ah,0
-espaco08      BYTE "                                                                                                  ",0Dh,0Ah,0
-espaco09      BYTE "                                                                                                  ",0Dh,0Ah,0
-espaco10      BYTE "                                                                                                  ",0Dh,0Ah,0
-espaco11      BYTE "                                                                                                  ",0Dh,0Ah,0
 instrucoes35  BYTE "                                                                                                  ",0Dh,0Ah,0
 instrucoes36  BYTE "               /            *                                                                **          \   ",0Dh,0Ah,0
 instrucoes37  BYTE "              < ----       * *                                                               * *   -----  >  ",0Dh,0Ah,0
@@ -120,21 +120,21 @@ instrucoes41  BYTE "           * *      *   *_  *    *    * *    * *_   *__   * 
 instrucoes42  BYTE "          * * *     *   *   *    *   * * *     *       *  *            *  *    **  * * *          ",0Dh,0Ah,0
 instrucoes43  BYTE "          *   *     *   *** **** *** *   *     ***  ***   ****      ***   ***  * * *   *          ",0Dh,0Ah,0
 instrucoes44  BYTE "                                                                                                  ",0Dh,0Ah,0
-instrucoes45  BYTE "          *   * ***** *** *   ***  ****   *    **    *       * *    *    ***    *                 ",0Dh,0Ah,0
-instrucoes46  BYTE "          *   *   *    *  *    *     *   * *   * *  * *      *  *  * *   * *   * *                ",0Dh,0Ah,0
-instrucoes47  BYTE "          *   *   *    *  *    *    *   * * *  * * * * *     * *  * * *  **   * * *               ",0Dh,0Ah,0
-instrucoes48  BYTE "          *_ _*   *   *** *** ***  **** *   *  **  *   *     *    *   *  * *  *   *               ",0Dh,0Ah,0
+instrucoes45  BYTE "               *   * ***** *** *   ***  ****   *    **    *       * *    *    ***    *            ",0Dh,0Ah,0
+instrucoes46  BYTE "               *   *   *    *  *    *     *   * *   * *  * *      *  *  * *   * *   * *           ",0Dh,0Ah,0
+instrucoes47  BYTE "               *   *   *    *  *    *    *   * * *  * * * * *     * *  * * *  **   * * *          ",0Dh,0Ah,0
+instrucoes48  BYTE "               *_ _*   *   *** *** ***  **** *   *  **  *   *     *    *   *  * *  *   *          ",0Dh,0Ah,0
 instrucoes49  BYTE "                                                                                                  ",0Dh,0Ah,0
-instrucoes50  BYTE "           ***   *   *** **     **   /*\    ***** /*\   ****  /*\                                 ",0Dh,0Ah,0
-instrucoes51  BYTE "          *__   * *   *  * *    * * *   *     *  *   *  *__  *   *                                ",0Dh,0Ah,0
-instrucoes52  BYTE "             * * * *  *  **     * * *   *   * *  *   *  *  * *   *                                ",0Dh,0Ah,0
-instrucoes53  BYTE "          ***  *   * *** * *    **   \*/    ***   \*/   ****  \*/                                 ",0Dh,0Ah,0
+instrucoes50  BYTE "                ***   *   *** **     **   /*\    ***** /*\   ****  /*\                            ",0Dh,0Ah,0
+instrucoes51  BYTE "               *__   * *   *  * *    * * *   *     *  *   *  *__  *   *                           ",0Dh,0Ah,0
+instrucoes52  BYTE "                  * * * *  *  **     * * *   *   * *  *   *  *  * *   *                           ",0Dh,0Ah,0
+instrucoes53  BYTE "               ***  *   * *** * *    **   \*/    ***   \*/   ****  \*/                            ",0Dh,0Ah,0
 instrucoes54  BYTE "                                                                                                  ",0Dh,0Ah,0
-instrucoes55  BYTE "               _                                                                                  ",0Dh,0Ah,0
-instrucoes56  BYTE "        /*\   *  \  *****  ***  *****  ***  *   *   /*\                                |          ",0Dh,0Ah,0
-instrucoes57  BYTE "       *   *  * _/    *    *_     *     *   *   *  *   *   *                           *          ",0Dh,0Ah,0
-instrucoes58  BYTE "       *   *  *  \  * *    *      *     *    * *   *   *                              ***         ",0Dh,0Ah,0
-instrucoes59  BYTE "        \*/   *_ /  ***    ***    *    ***    *     \*/    *                          * *         ",0Dh,0Ah,0
+instrucoes55  BYTE "                  _                                                                                  ",0Dh,0Ah,0
+instrucoes56  BYTE "           /*\   *  \  *****  ***  *****  ***  *   *   /*\                                |          ",0Dh,0Ah,0
+instrucoes57  BYTE "          *   *  * _/    *    *_     *     *   *   *  *   *   *                           *          ",0Dh,0Ah,0
+instrucoes58  BYTE "          *   *  *  \  * *    *      *     *    * *   *   *                              ***         ",0Dh,0Ah,0
+instrucoes59  BYTE "           \*/   *_ /  ***    ***    *    ***    *     \*/    *                          * *         ",0Dh,0Ah,0
 instrucoes60  BYTE "                                                                                                  ",0Dh,0Ah,0
 instrucoes61  BYTE "                **   ***  *** ***** **  *   * *** **     /*\    *** **  * *** *   * *** ****  /*\ ",0Dh,0Ah,0
 instrucoes62  BYTE "                * *  *_   *_    *   * * *   *  *  * *   *   *    *  * * *  *  ** **  *  *__  *   *",0Dh,0Ah,0
@@ -168,6 +168,30 @@ instrucoes71  BYTE "               /            *                               
 instrucoes72  BYTE "              < ----       * *                                                               * *   -----  >  ",0Dh,0Ah,0
 instrucoes73  BYTE "               \          * * *                                                              * *         /   ",0Dh,0Ah,0
 instrucoes74  BYTE "                          *   *                                                              **              ",0Dh,0Ah,0
+
+config00   BYTE "                                                                                   ",0Dh,0Ah,0 
+config01   BYTE "          ***   /*\   **   **                                                          | ",0Dh,0Ah,0   
+config02   BYTE "         *__   *   *  * * * *    *                                                 ",0Dh,0Ah,0   
+config03   BYTE "            *  *   *  * * * *                                                      ",0Dh,0Ah,0   
+config04   BYTE "         ***    \*/   *  *  *    *                                                 ",0Dh,0Ah,0   
+config05   BYTE "                                                          * *                      ",0Dh,0Ah,0  
+config06   BYTE "                                                            * *   -       -          ",0Dh,0Ah,0 
+config07   BYTE "                                                          * *                      ",0Dh,0Ah,0   
+config08   BYTE "                     /*\  **  *   *       *  *                                     ",0Dh,0Ah,0   
+config09   BYTE "                    *   * * * *           *__*                                     ",0Dh,0Ah,0   
+config10   BYTE "                    *   * *  **   *       *  *                                     ",0Dh,0Ah,0   
+config11   BYTE "                     \*/  *   *           *  *                                     ",0Dh,0Ah,0   
+config12   BYTE "                                                                                   ",0Dh,0Ah,0   
+config13   BYTE "                                                                                   ",0Dh,0Ah,0   
+config14   BYTE "                     /*\  **** **** *       *                                        ",0Dh,0Ah,0   
+config15   BYTE "                    *   * *_   *_           *                                        ",0Dh,0Ah,0   
+config16   BYTE "                    *   * *    *    *       *                                        ",0Dh,0Ah,0   
+config17   BYTE "                     \*/  *    *            ***                                      ",0Dh,0Ah,0   
+config18   BYTE "                                                                                       |         ",0Dh,0Ah,0   
+config19   BYTE "                                                                                                ",0Dh,0Ah,0   
+config20   BYTE "                                                                                       *        ",0Dh,0Ah,0   
+config21   BYTE "                                                                                     * * *         ",0Dh,0Ah,0   
+config22   BYTE "                                                                                     *   *     ",0Dh,0Ah,0 
 
 
 		  
@@ -494,7 +518,7 @@ main PROC
     JE creditos
 	
 	CMP AL, '4'                 
-    ;JE configuracoes
+    JE configuracoes
 
     CMP AL, '5'                 
     JE sair
@@ -668,6 +692,11 @@ main PROC
     CALL SetTextColor 	
     CALL WriteString 
 	
+	MOV EDX, OFFSET espacoa  
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
 		MOV EDX, OFFSET instrucoes05 
 	MOV EAX, blue + (black * 16)
     CALL SetTextColor 	
@@ -684,6 +713,11 @@ main PROC
     CALL WriteString 
 	
 		MOV EDX, OFFSET instrucoes08 
+	MOV EAX, blue + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString 
+	
+		MOV EDX, OFFSET espacob 
 	MOV EAX, blue + (black * 16)
     CALL SetTextColor 	
     CALL WriteString 
@@ -716,7 +750,12 @@ main PROC
 	MOV EDX, OFFSET instrucoes14
 	MOV EAX, white + (black * 16)
     CALL SetTextColor 	
-    CALL WriteString 
+    CALL WriteString
+
+	MOV EDX, OFFSET espacoc
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString 	
 	
 		MOV EDX, OFFSET instrucoes15
 	MOV EAX, white + (black * 16)
@@ -739,6 +778,11 @@ main PROC
     CALL WriteString 
 	
 		MOV EDX, OFFSET instrucoes19
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString 
+	
+	MOV EDX, OFFSET espacod
 	MOV EAX, white + (black * 16)
     CALL SetTextColor 	
     CALL WriteString 
@@ -766,7 +810,12 @@ main PROC
 		MOV EDX, OFFSET instrucoes24
 	MOV EAX, blue + (black * 16)
     CALL SetTextColor 	
-    CALL WriteString 
+    CALL WriteString
+
+	MOV EDX, OFFSET espacoe
+	MOV EAX, blue + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString	
 	
 		MOV EDX, OFFSET instrucoes25
 	MOV EAX, white + (black * 16)
@@ -789,6 +838,11 @@ main PROC
     CALL WriteString 
 	
 	MOV EDX, OFFSET instrucoes29
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString 
+	
+	MOV EDX, OFFSET espacof
 	MOV EAX, white + (black * 16)
     CALL SetTextColor 	
     CALL WriteString 
@@ -844,36 +898,6 @@ main PROC
 	MOV EAX, white + (black * 16)
     CALL SetTextColor 	
     CALL WriteString
-
-	MOV EDX, OFFSET espaco06
-	MOV EAX, white + (black * 16)
-    CALL SetTextColor 	
-    CALL WriteString
-
-	MOV EDX, OFFSET espaco07
-	MOV EAX, white + (black * 16)
-    CALL SetTextColor 	
-    CALL WriteString
-
-	MOV EDX, OFFSET espaco08
-	MOV EAX, white + (black * 16)
-    CALL SetTextColor 	
-    CALL WriteString
-
-	MOV EDX, OFFSET espaco09
-	MOV EAX, white + (black * 16)
-    CALL SetTextColor 	
-    CALL WriteString
-
-	MOV EDX, OFFSET espaco10
-	MOV EAX, white + (black * 16)
-    CALL SetTextColor 	
-    CALL WriteString
-
-	MOV EDX, OFFSET espaco11
-	MOV EAX, white + (black * 16)
-    CALL SetTextColor 	
-    CALL WriteString
 	
 	
 		MOV EDX, OFFSET instrucoes35
@@ -882,22 +906,22 @@ main PROC
     CALL WriteString
 	
 		MOV EDX, OFFSET instrucoes36
-	MOV EAX, white + (black * 16)
+	MOV EAX, green + (black * 16)
     CALL SetTextColor 	
     CALL WriteString
 	
 		MOV EDX, OFFSET instrucoes37
-	MOV EAX, white + (black * 16)
+	MOV EAX, green + (black * 16)
     CALL SetTextColor 	
     CALL WriteString
 	
 		MOV EDX, OFFSET instrucoes38
-	MOV EAX, white + (black * 16)
+	MOV EAX, green + (black * 16)
     CALL SetTextColor 	
     CALL WriteString
 	
 		MOV EDX, OFFSET instrucoes39
-	MOV EAX, white + (black * 16)
+	MOV EAX, green + (black * 16)
     CALL SetTextColor 	
     CALL WriteString
 	
@@ -988,7 +1012,7 @@ main PROC
     CALL WriteString
 	
 		MOV EDX, OFFSET instrucoes55
-	MOV EAX, white + (black * 16)
+	MOV EAX, red + (black * 16)
     CALL SetTextColor 	
     CALL WriteString
 	
@@ -1158,22 +1182,22 @@ main PROC
     CALL WriteString
 	
 		MOV EDX, OFFSET instrucoes71
-	MOV EAX, white + (black * 16)
+	MOV EAX, green + (black * 16)
     CALL SetTextColor 	
     CALL WriteString
 	
 		MOV EDX, OFFSET instrucoes72
-	MOV EAX, white + (black * 16)
+	MOV EAX, green + (black * 16)
     CALL SetTextColor 	
     CALL WriteString
 	
 		MOV EDX, OFFSET instrucoes73
-	MOV EAX, white + (black * 16)
+	MOV EAX, green + (black * 16)
     CALL SetTextColor 	
     CALL WriteString
 	
 		MOV EDX, OFFSET instrucoes74
-	MOV EAX, white + (black * 16)
+	MOV EAX, green + (black * 16)
     CALL SetTextColor 	
     CALL WriteString
 	
@@ -1184,7 +1208,130 @@ main PROC
 	JE instrucoes
 	JNE instrucoes1
 	
-	;configuracoes:
+	configuracoes:
+	
+	CALL Clrscr
+	
+		MOV EDX, OFFSET config00  
+	MOV EAX, blue + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+
+	MOV EDX, OFFSET config01  
+	MOV EAX, blue + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+		MOV EDX, OFFSET config02 
+	MOV EAX, blue + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+		MOV EDX, OFFSET config03  
+	MOV EAX, blue + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+		MOV EDX, OFFSET config04 
+	MOV EAX, blue + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+		MOV EDX, OFFSET config05  
+	MOV EAX, red + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+		MOV EDX, OFFSET config06  
+	MOV EAX, red + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+		MOV EDX, OFFSET config07 
+	MOV EAX, red + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+		MOV EDX, OFFSET config08  
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+		MOV EDX, OFFSET config09 
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+		MOV EDX, OFFSET config10 
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+		MOV EDX, OFFSET config11 
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+		MOV EDX, OFFSET config12 
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+		MOV EDX, OFFSET config13
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+
+		MOV EDX, OFFSET config14
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+		MOV EDX, OFFSET config15
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+		MOV EDX, OFFSET config16
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+		MOV EDX, OFFSET config17
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+		MOV EDX, OFFSET config18
+	MOV EAX, blue + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+		MOV EDX, OFFSET config19
+	MOV EAX, blue + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+	MOV EDX, OFFSET config20
+	MOV EAX, blue + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+		MOV EDX, OFFSET config21 
+	MOV EAX, blue + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+
+		MOV EDX, OFFSET config22 
+	MOV EAX, blue + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+	CALL ReadChar
+	CMP AL,'h'
+	JE configuracoes
+	CMP AL,'l'
+	JE configuracoes
+	JNE menu
 
 sair:
 	exit
