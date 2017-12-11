@@ -47,6 +47,8 @@ node ENDS
 NULL = 0
 SIZENODE = 16
 
+
+
 colisaoDir crd <0,0>,<2,0>,<2,1>,<4,1>,<0,2>,<2,2>
 colisaoEsq crd <2,0>,<4,0>,<0,1>,<2,1>,<2,2>,<4,2>
 colisaoCim crd <2,0>,<0,1>,<2,1>,<4,1>,<0,2>,<4,2>
@@ -691,9 +693,11 @@ Jogo:
 	jne Encerrado
 Jogador2G:
 	Invoke Py2Ganhou
+	INvoke ReadChar
 	jmp Encerrado
 Jogador1G:
 	Invoke Py1Ganhou	
+	INvoke ReadChar
 Encerrado:
 	mov perdeu,0
 	jmp menu
