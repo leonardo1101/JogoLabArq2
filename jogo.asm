@@ -9,8 +9,11 @@ criaTiro PROTO
 adicionarTiro PROTO
 mostrarTiros PROTO
 retirarTiro PROTO ,  endNodeA : DWORD
+removerTTiros PROTO
 bateu PROTO
 loopJogo PROTO
+Py1Ganhou PROTO
+Py2Ganhou PROTO
 ClearScreen PROTO
 Draw PROTO
 PlaySound PROTO, pszSound:PTR BYTE, hmod:DWORD, fdwSound:DWORD
@@ -59,6 +62,10 @@ tiroSoundF BYTE "c:\\LabArq2\MASM\shoot.wav",0
 bateuSoundF BYTE "c:\\LabArq2\MASM\bateu.wav",0
 fimSoundF BYTE "c:\\LabArq2\MASM\fim.wav",0
 
+som Byte 1
+cor1 DWORD 0
+cor2 DWORD 0
+
 noRemover DWORD 0 
 nodeInicio DWORD 0
 hHeap DWORD ?
@@ -71,7 +78,7 @@ nave1 nave <5,5,1,3>
 nave2 nave <50,20,3,3>
 playerPress byte 0
 messageDirections BYTE "Use the arrow keys to move", 0dh, 0ah, 0
-
+perdeu Byte 0
 
 
 tela DWORD 124, 108 dup(00),124
@@ -325,9 +332,64 @@ creditos20  BYTE "           *    *   *  ***  ***   *    **  *  /*\     **  *   
 creditos21  BYTE "           *    *   *  *     *   * *   * * * *   *    * * *                                   ",0Dh,0Ah,0
 creditos22  BYTE "           *    *   *  *     *  * * *  *  ** *   *    *  **                                   ",0Dh,0Ah,0
 creditos23  BYTE "           * *  * * *  ***  *** *   *  *   *  \*/     *   *  *                                ",0Dh,0Ah,0
-				   
 
-		 
+venceu1     BYTE "    ______        __           __    ______     _______      ___       _______   ______   .______ ",0Dh,0Ah,0
+venceu2     BYTE "   /  __  \      /_ |         |  |  /  __  \   /  _____|    /   \     |       \ /  __  \  |   _  \ ",0Dh,0Ah,0
+venceu3     BYTE "  |  |  |  |      | |         |  | |  |  |  | |  |  __     /  ^  \    |  .--.  |  |  |  | |  |_)  |   ",0Dh,0Ah,0
+venceu4     BYTE "  |  |  |  |      | |   .--.  |  | |  |  |  | |  | |_ |   /  /_\  \   |  |  |  |  |  |  | |      /  ",0Dh,0Ah,0
+venceu5     BYTE "  |  `--'  |      | |   |  `--'  | |  `--'  | |  |__| |  /  _____  \  |  '--'  |  `--'  | |  |\  \-.",0Dh,0Ah,0
+venceu6     BYTE "   \______/       |_|    \______/   \______/   \______| /__/     \__\ |_______/ \______/  | _| `.__| ",0Dh,0Ah,0
+venceu7     BYTE "                                                                                                   ",0Dh,0Ah,0
+venceu8     BYTE "                                                                                                   ",0Dh,0Ah,0
+venceu9     BYTE "                                                                                                   ",0Dh,0Ah,0
+venceu10    BYTE "                                                                                                   ",0Dh,0Ah,0
+
+
+venceu11     BYTE "               ____    ____  _______ .__   __.   ______  _______  __    __      __ ",0Dh,0Ah,0
+venceu12     BYTE "               \   \  /   / |   ____||  \ |  |  /      ||   ____||  |  |  |    |  |",0Dh,0Ah,0
+venceu13     BYTE "                \   \/   /  |  |__   |   \|  | |  ,----'|  |__   |  |  |  |    |  | ",0Dh,0Ah,0
+venceu14     BYTE "                 \      /   |   __|  |  . `  | |  |     |   __|  |  |  |  |    |  | ",0Dh,0Ah,0
+venceu15     BYTE "                  \    /    |  |____ |  |\   | |  `----.|  |____ |  `--'  |    |__| ",0Dh,0Ah,0
+venceu16     BYTE "                   \__/     |_______||__| \__|  \______||_______| \______/     (__) ",0Dh,0Ah,0
+
+venceu17     BYTE "                             _                                       _ ",0Dh,0Ah,0
+venceu18     BYTE "                            |     _ _          _ _ _ _   _ _    _ _   |",0Dh,0Ah,0
+venceu19     BYTE "                            |    |      |\   |    |     |      |   |  |",0Dh,0Ah,0
+venceu20     BYTE "                            |    |_ _   | \  |    |     |_ _   |   |  |",0Dh,0Ah,0
+venceu21     BYTE "                            |    |      |  \ |    |     |      | --   |" ,0Dh,0Ah,0
+venceu22     BYTE "                            |    |_ _   |   \|    |     |_ _   |  \   |",0Dh,0Ah,0
+venceu23     BYTE "                            |_                                       _|",0Dh,0Ah,0
+
+venceu24     BYTE "    ______        ___            __    ______     _______      ___       _______   ______   .______ ",0Dh,0Ah,0
+venceu25     BYTE "   /  __  \      |__ \          |  |  /  __  \   /  _____|    /   \     |       \ /  __  \  |   _  \ ",0Dh,0Ah,0
+venceu26     BYTE "  |  |  |  |        ) |         |  | |  |  |  | |  |  __     /  ^  \    |  .--.  |  |  |  | |  |_)  |   ",0Dh,0Ah,0
+venceu27     BYTE "  |  |  |  |       / /    .--.  |  | |  |  |  | |  | |_ |   /  /_\  \   |  |  |  |  |  |  | |      /  ",0Dh,0Ah,0
+venceu28     BYTE "  |  `--'  |      / /_    |  `--'  | |  `--'  | |  |__| |  /  _____  \  |  '--'  |  `--'  | |  |\  \-.",0Dh,0Ah,0
+venceu29     BYTE "   \______/      |____|    \______/   \______/   \______| /__/     \__\ |_______/ \______/  | _| `.__| ",0Dh,0Ah,0
+	 		 
+config00   BYTE "                                                                                   ",0Dh,0Ah,0 
+config01   BYTE "          ***   /*\   **   **                                                          | ",0Dh,0Ah,0   
+config02   BYTE "         *__   *   *  * * * *    *                                                 ",0Dh,0Ah,0   
+config03   BYTE "            *  *   *  * * * *                                                      ",0Dh,0Ah,0   
+config04   BYTE "         ***    \*/   *  *  *    *                                                 ",0Dh,0Ah,0   
+config05   BYTE "                                                          * *                      ",0Dh,0Ah,0  
+config06   BYTE "                                                            * *   -       -          ",0Dh,0Ah,0 
+config07   BYTE "                                                          * *                      ",0Dh,0Ah,0   
+config08   BYTE "                     /*\  **  *   *       *  *                                     ",0Dh,0Ah,0   
+config09   BYTE "                    *   * * * *           *__*                                     ",0Dh,0Ah,0   
+config10   BYTE "                    *   * *  **   *       *  *                                     ",0Dh,0Ah,0   
+config11   BYTE "                     \*/  *   *           *  *                                     ",0Dh,0Ah,0   
+config12   BYTE "                                                                                   ",0Dh,0Ah,0   
+config13   BYTE "                                                                                   ",0Dh,0Ah,0   
+config14   BYTE "                     /*\  **** **** *       *                                        ",0Dh,0Ah,0   
+config15   BYTE "                    *   * *_   *_           *                                        ",0Dh,0Ah,0   
+config16   BYTE "                    *   * *    *    *       *                                        ",0Dh,0Ah,0   
+config17   BYTE "                     \*/  *    *            ***                                      ",0Dh,0Ah,0   
+config18   BYTE "                                                                                       |         ",0Dh,0Ah,0   
+config19   BYTE "                                                                                                ",0Dh,0Ah,0   
+config20   BYTE "                                                                                       *        ",0Dh,0Ah,0   
+config21   BYTE "                                                                                     * * *         ",0Dh,0Ah,0   
+config22   BYTE "                                                                                     *   *     ",0Dh,0Ah,0 
 
 .code
 main PROC
@@ -621,6 +683,19 @@ main PROC
 Jogo:
 	CALL Clrscr
 	INVOKE loopJogo
+	movzx eax, Byte PTR perdeu
+	cmp eax,1
+	je Jogador2G
+	cmp eax,2
+	je Jogador1G
+	jne Encerrado
+Jogador2G:
+	Invoke Py2Ganhou
+	jmp Encerrado
+Jogador1G:
+	Invoke Py1Ganhou	
+Encerrado:
+	mov perdeu,0
 	jmp menu
 
 OutrasOpcoes:
@@ -628,16 +703,162 @@ OutrasOpcoes:
     CMP AL, '2'                 
     JE instrucoes
 
-    CMP AL, '3'                 
+    CMP AL, '4'                 
     JE creditos
 	
-	CMP AL, '4'                 
-    ;JE configuracoes
+	CMP AL, '3'                 
+    JE configuracoes
 
     CMP AL, '5'                 
     JE sair
 	JNE centralMenu
 	
+	configuracoes:
+	CALL Clrscr
+	mov ebx, green
+	mov ecx , white
+	movzx eax,som
+	cmp eax, 1
+	je ligado
+	jne desligado
+	
+ligado:
+	mov cor1,ebx
+	mov cor2,ecx
+	jmp mostrarConf
+desligado:
+	mov cor1,ecx
+	mov cor2,ebx
+	
+mostrarConf:
+	MOV EDX, OFFSET config00  
+	MOV EAX, blue + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+
+	MOV EDX, OFFSET config01  
+	MOV EAX, blue + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+	MOV EDX, OFFSET config02 
+	MOV EAX, blue + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+	MOV EDX, OFFSET config03  
+	MOV EAX, blue + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+	MOV EDX, OFFSET config04 
+	MOV EAX, blue + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+	MOV EDX, OFFSET config05  
+	MOV EAX, red + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+	MOV EDX, OFFSET config06  
+	MOV EAX, red + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+	MOV EDX, OFFSET config07 
+	MOV EAX, red + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+	MOV EDX, OFFSET config08  
+	MOV EAX, cor1 + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+	MOV EDX, OFFSET config09 
+	MOV EAX, cor1 + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+	MOV EDX, OFFSET config10 
+	MOV EAX, cor1 + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+	MOV EDX, OFFSET config11 
+	MOV EAX, cor1 + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+	MOV EDX, OFFSET config12 
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+	MOV EDX, OFFSET config13
+	MOV EAX, white + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+
+	MOV EDX, OFFSET config14
+	MOV EAX, cor2 + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+	MOV EDX, OFFSET config15
+	MOV EAX, cor2 + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+	MOV EDX, OFFSET config16
+	MOV EAX, cor2 + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+	MOV EDX, OFFSET config17
+	MOV EAX, cor2 + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+	MOV EDX, OFFSET config18
+	MOV EAX, blue + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+	MOV EDX, OFFSET config19
+	MOV EAX, blue + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+	MOV EDX, OFFSET config20
+	MOV EAX, blue + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+	MOV EDX, OFFSET config21 
+	MOV EAX, blue + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+
+	MOV EDX, OFFSET config22 
+	MOV EAX, blue + (black * 16)
+    CALL SetTextColor 	
+    CALL WriteString
+	
+	CALL ReadChar
+	CMP AL,'h'
+	JE ligar
+	CMP AL,'l'
+	JE desligar
+ligar:
+	mov som,1
+	jmp loopConf
+desligar:
+	mov som,2
+loopConf:
+	JE configuracoes
+	JNE menu
 	
 	creditos:
 	
@@ -1448,7 +1669,10 @@ MovP2:
 	jmp repita
 	
 Atirou:	
+	cmp som,0
+	je semSomTiro
     INVOKE PlaySound, OFFSET tiroSoundF, NULL, SND_FILENAME
+semSomTiro:
 	INVOKE criaTiro
 	jmp MovP1
 	
@@ -1589,7 +1813,13 @@ incMovBP2:
 	jmp repita
 	
 fim:
+	INVOKE removerTTiros
+	cmp som,0
+	je semSomF
+	INVOKE PlaySound, OFFSET fimSoundF, NULL, SND_FILENAME
+semSomF:
 	ret
+	
 
 loopJogo ENDP
 
@@ -2019,13 +2249,17 @@ Nv1XIgual:
 	loop Nv1TestCol
 	jmp Nv2RDano
 Nv1YIgual:
+	cmp  som,0
+	je Nv1SemSom
 	INVOKE PlaySound, OFFSET bateuSoundF, NULL, SND_FILENAME
+Nv1SemSom:
 	mov ah,nave1.vida
 	mov acertou,1
 	cmp ah,0
 	je morreuP1
 	dec ah
 morreuP1:
+	mov perdeu,1
 	mov nave1.vida , ah
 	jmp Nv2RDano
 
@@ -2077,13 +2311,17 @@ Nv2XIgual:
 	loop Nv2TestCol
 	jmp Fim
 Nv2YIgual:
+	cmp som,0
+	je Nv2SemSom
 	INVOKE PlaySound, OFFSET bateuSoundF, NULL, SND_FILENAME
+Nv2SemSom:	
 	mov ah,nave2.vida
 	mov acertou,1
 	cmp ah,0
 	je morreuP2
 	dec ah
 morreuP2:
+	mov perdeu,2
 	mov nave2.vida , ah
 	jmp Fim
 Fim:
@@ -2282,4 +2520,159 @@ fim:
 	
 	ret
 desenhaVida ENDP
+
+removerTTiros PROC
+	mov edx,nodeInicio
+	cmp edx, 0
+	jne Apagando
+	je Vazio
+Apagando:	
+	mov ebx,[edx + 0ch]
+	INVOKE HeapFree,hHeap,dwFlags,edx
+	mov edx,ebx
+	cmp edx, 0
+	jne Apagando
+	mov quantTiros,0	
+	mov nodeInicio,0
+Vazio:
+	ret
+removerTTiros ENDP
+Py1Ganhou PROC
+	MOV EAX, lightCyan + (black * 16)
+    CALL SetTextColor 	
+	MOV EDX, OFFSET venceu7
+    CALL WriteString 
+	MOV EDX, OFFSET venceu8
+    CALL WriteString 
+	MOV EDX, OFFSET venceu9 
+    CALL WriteString 
+	MOV EDX, OFFSET venceu10
+    CALL WriteString 
+	MOV EDX, OFFSET venceu1  
+    CALL WriteString 
+	MOV EDX, OFFSET venceu2  
+    CALL WriteString 
+	MOV EDX, OFFSET venceu3  
+    CALL WriteString 
+	MOV EDX, OFFSET venceu4
+    CALL WriteString 
+	MOV EDX, OFFSET venceu5
+    CALL WriteString 
+	MOV EDX, OFFSET venceu6  
+    CALL WriteString 
+	MOV EDX, OFFSET venceu7
+    CALL WriteString 
+	MOV EDX, OFFSET venceu8
+    CALL WriteString 
+	MOV EDX, OFFSET venceu9 
+    CALL WriteString 
+	MOV EDX, OFFSET venceu10
+    CALL WriteString 
+	MOV EDX, OFFSET venceu11
+    CALL WriteString 
+	MOV EDX, OFFSET venceu12 
+    CALL WriteString 
+	MOV EDX, OFFSET venceu13  
+    CALL WriteString 
+	MOV EDX, OFFSET venceu14  
+    CALL WriteString 
+	MOV EDX, OFFSET venceu15 
+    CALL WriteString 
+	MOV EDX, OFFSET venceu16  
+    CALL WriteString 
+	MOV EDX, OFFSET venceu7
+    CALL WriteString 
+	MOV EDX, OFFSET venceu8
+    CALL WriteString 
+	MOV EDX, OFFSET venceu9 
+    CALL WriteString 
+	MOV EDX, OFFSET venceu10
+    CALL WriteString 
+	MOV EDX, OFFSET venceu17
+    CALL WriteString 
+	MOV EDX, OFFSET venceu18
+    CALL WriteString 
+	MOV EDX, OFFSET venceu19 
+    CALL WriteString 
+	MOV EDX, OFFSET venceu20
+    CALL WriteString 
+	MOV EDX, OFFSET venceu21
+    CALL WriteString 
+	MOV EDX, OFFSET venceu22
+    CALL WriteString 
+	MOV EDX, OFFSET venceu23
+    CALL WriteString 
+	INVOKE sleep, 6000
+	ret 
+
+Py1Ganhou ENDP
+Py2Ganhou PROC
+	MOV EAX, lightCyan + (black * 16)
+    CALL SetTextColor 	
+	MOV EDX, OFFSET venceu7
+    CALL WriteString 
+	MOV EDX, OFFSET venceu8
+    CALL WriteString 
+	MOV EDX, OFFSET venceu9 
+    CALL WriteString 
+	MOV EDX, OFFSET venceu10
+    CALL WriteString 
+	MOV EDX, OFFSET venceu24  
+    CALL WriteString 
+	MOV EDX, OFFSET venceu25  
+    CALL WriteString 
+	MOV EDX, OFFSET venceu26 
+    CALL WriteString 
+	MOV EDX, OFFSET venceu27
+    CALL WriteString 
+	MOV EDX, OFFSET venceu28
+    CALL WriteString 
+	MOV EDX, OFFSET venceu29 
+    CALL WriteString 
+	MOV EDX, OFFSET venceu7
+    CALL WriteString 
+	MOV EDX, OFFSET venceu8
+    CALL WriteString 
+	MOV EDX, OFFSET venceu9 
+    CALL WriteString 
+	MOV EDX, OFFSET venceu10
+    CALL WriteString 
+	MOV EDX, OFFSET venceu11
+    CALL WriteString 
+	MOV EDX, OFFSET venceu12 
+    CALL WriteString 
+	MOV EDX, OFFSET venceu13  
+    CALL WriteString 
+	MOV EDX, OFFSET venceu14  
+    CALL WriteString 
+	MOV EDX, OFFSET venceu15 
+    CALL WriteString 
+	MOV EDX, OFFSET venceu16  
+    CALL WriteString 
+	MOV EDX, OFFSET venceu7
+    CALL WriteString 
+	MOV EDX, OFFSET venceu8
+    CALL WriteString 
+	MOV EDX, OFFSET venceu9 
+    CALL WriteString 
+	MOV EDX, OFFSET venceu10
+    CALL WriteString 
+	MOV EDX, OFFSET venceu17
+    CALL WriteString 
+	MOV EDX, OFFSET venceu18
+    CALL WriteString 
+	MOV EDX, OFFSET venceu19 
+    CALL WriteString 
+	MOV EDX, OFFSET venceu20
+    CALL WriteString 
+	MOV EDX, OFFSET venceu21
+    CALL WriteString 
+	MOV EDX, OFFSET venceu22
+    CALL WriteString 
+	MOV EDX, OFFSET venceu23
+    CALL WriteString 
+	INVOKE sleep, 6000
+	ret 
+
+Py2Ganhou ENDP
 END main
